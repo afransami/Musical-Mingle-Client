@@ -14,8 +14,11 @@ const Navbar = () => {
         <Link to="/classes">Classes</Link>
       </li>
       <li>
+        <Link to="/login">Login</Link>
+      </li>
+      <li>
         <Link to="/dashboard">Dashboard</Link>
-      </li>      
+      </li>
     </>
   );
   return (
@@ -113,8 +116,14 @@ const Navbar = () => {
             {NavMenu}
           </ul>
         </div>
-        <div className="flex justify-center items-center gap-2 uppercase font-extrabold tracking-widest mx-auto text-center">          
-          <Link><img className="w-20 h-20" src="https://i.ibb.co/YWZdQWV/Musical-Mingle-logo-removebg-preview.png" alt="" /></Link>
+        <div className="flex justify-center items-center gap-2 uppercase font-extrabold tracking-widest mx-auto text-center">
+          <Link>
+            <img
+              className="w-20 h-20"
+              src="https://i.ibb.co/YWZdQWV/Musical-Mingle-logo-removebg-preview.png"
+              alt=""
+            />
+          </Link>
           <Link>
             <p className="scale-125 text-sm font-serif font-">Musical</p>
             <p className="scale-150 text-sm font-extralight font-serif">
@@ -126,40 +135,29 @@ const Navbar = () => {
 
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{NavMenu}</ul>
-      </div>    
+      </div>
 
-
-     
-          
-            
-          <div className="dropdown dropdown-end ">
-            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-              <div className="w-10 rounded-full">
-                <img src="https://i.ibb.co/YWZdQWV/Musical-Mingle-logo-removebg-preview.png" />
-              </div>
-            </label>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 text-white rounded-box w-52"
-            >
-              <li>
-                <a className="justify-between">Profile</a>
-              </li>
-              <li>
-                <a>Settings</a>
-              </li>
-              <li>
-                <a>Logout</a>
-              </li>
-            </ul>
+      <div className="dropdown dropdown-end ">
+        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+          <div className="w-10 rounded-full">
+            <img src="https://i.ibb.co/YWZdQWV/Musical-Mingle-logo-removebg-preview.png" />
           </div>
-        
-            
-       
-        
-     
-
-
+        </label>
+        <ul
+          tabIndex={0}
+          className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 text-white rounded-box w-52"
+        >
+          <li>
+            <a className="justify-between">Profile</a>
+          </li>
+          <li>
+            <a>Settings</a>
+          </li>
+          <li>
+            <a>Logout</a>
+          </li>
+        </ul>
+      </div>
 
       {/* <div className="dropdown dropdown-end ">
         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
