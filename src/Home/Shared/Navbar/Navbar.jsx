@@ -8,17 +8,14 @@ const Navbar = () => {
         <Link to="/">Home</Link>
       </li>
       <li>
-        <Link to="/contactUs">Contact Us</Link>
+        <Link to="/instructors">Instructors</Link>
       </li>
       <li>
-        <Link to="/menu">Our Menu</Link>
+        <Link to="/classes">Classes</Link>
       </li>
       <li>
-        <Link to="/order/salad">Order Food</Link>
-      </li>
-      <li>
-        <Link to="/secret">Secret</Link>
-      </li>
+        <Link to="/dashboard">Dashboard</Link>
+      </li>      
     </>
   );
   return (
@@ -129,14 +126,42 @@ const Navbar = () => {
 
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{NavMenu}</ul>
-      </div>
-      {/* <div className="navbar-end">
-        <Link>
-          <button className="btn">Get Started</button>
-        </Link>
-      </div> */}
+      </div>    
 
-      <div className="dropdown dropdown-end ">
+
+     
+          
+            
+          <div className="dropdown dropdown-end ">
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full">
+                <img src="https://i.ibb.co/YWZdQWV/Musical-Mingle-logo-removebg-preview.png" />
+              </div>
+            </label>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 text-white rounded-box w-52"
+            >
+              <li>
+                <a className="justify-between">Profile</a>
+              </li>
+              <li>
+                <a>Settings</a>
+              </li>
+              <li>
+                <a>Logout</a>
+              </li>
+            </ul>
+          </div>
+        
+            
+       
+        
+     
+
+
+
+      {/* <div className="dropdown dropdown-end ">
         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
           <div className="w-10 rounded-full">
             <img src="https://i.ibb.co/YWZdQWV/Musical-Mingle-logo-removebg-preview.png" />
@@ -156,7 +181,7 @@ const Navbar = () => {
             <a>Logout</a>
           </li>
         </ul>
-      </div>
+      </div> */}
     </div>
   );
 };
