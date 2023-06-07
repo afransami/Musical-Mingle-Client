@@ -209,9 +209,13 @@ const Navbar = () => {
 
       <div className="dropdown dropdown-end ">
         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-          <div className="w-10 rounded-full">
-            <img src="https://i.ibb.co/YWZdQWV/Musical-Mingle-logo-removebg-preview.png" />
-          </div>
+        <div className="w-10 rounded-full">
+                    {/* <img src={user.photoURL} /> */}
+                    <span className="ml-2">{user?.displayName}</span>
+                  </div>
+          {/* <div className="w-10 rounded-full">
+            <img src="" />
+          </div> */}
         </label>
         <ul
           tabIndex={0}

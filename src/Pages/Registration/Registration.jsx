@@ -88,7 +88,7 @@ const Registration = () => {
                   placeholder="name"
                   {...register("name")}
                   {...register("name", { required: true })}
-                  className="w-full px-4 py-2 rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
+                  className="text-black w-full px-4 py-2 rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
                 />
                 {errors.name && (
                   <span className="text-red-500">This field is required</span>
@@ -100,7 +100,7 @@ const Registration = () => {
                   type="url"
                   placeholder="Photo url"
                   {...register("photoURL", { required: true })}
-                  className="w-full px-4 py-2 rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
+                  className="text-black w-full px-4 py-2 rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
                 />
                 {errors.photoUrl && (
                   <span className="text-red-500">This field is required</span>
@@ -113,7 +113,7 @@ const Registration = () => {
                   placeholder="email"
                   {...register("email")}
                   {...register("email", { required: true })}
-                  className="w-full px-4 py-2 rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
+                  className="text-black w-full px-4 py-2 rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
                 />
                 {errors.email && (
                   <span className="text-red-500">This field is required</span>
@@ -131,7 +131,7 @@ const Registration = () => {
                 minLength: 6,
                 pattern: /(?=.*[!@#$%^&*])(?=.*[A-Z])/                    
               })}
-            className="w-full px-4 py-2 rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
+            className="text-black w-full px-4 py-2 rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
           />
 
 
@@ -193,7 +193,7 @@ const Registration = () => {
             type={showConfirmPassword ? 'text' : 'password'}
             id="confirmPassword"
             {...register('confirmPassword', { required: true })}
-            className="w-full px-4 py-2 rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
+            className="text-black w-full px-4 py-2 rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
           />
           <button
             type="button"
@@ -231,7 +231,7 @@ const Registration = () => {
           </form>
         </div>
       </div>
-      {/* <FaEyeSlash></FaEyeSlash> */}
+  
     </div>
   );
 };
