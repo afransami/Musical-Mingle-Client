@@ -1,7 +1,15 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Provider/AuthProvider/AuthProvider";
 
 const Navbar = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { user } = useContext(AuthContext);
+  const handleLogout = () => {
+    // Perform logout logic
+    setIsAuthenticated(false);
+  };
+
   const NavMenu = (
     <>
       <li>
@@ -13,12 +21,52 @@ const Navbar = () => {
       <li>
         <Link to="/classes">Classes</Link>
       </li>
-      <li>
+      {/* <li>
         <Link to="/login">Login</Link>
       </li>
       <li>
         <Link to="/dashboard">Dashboard</Link>
-      </li>
+      </li> */}
+
+      <div className="flex items-center space-x-4">
+        {isAuthenticated ? (
+          <>
+            <div className="flex items-center">
+              <div className="dropdown dropdown-end ">
+                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                  <div className="w-10 rounded-full">
+                    <img src={user.photoURL} />
+                    <span className="ml-2">{user.displayName}</span>
+                  </div>
+                </label>
+                <ul
+                  tabIndex={0}
+                  className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 text-white rounded-box w-52"
+                >
+                  <li>
+                    <a className="justify-between">Profile</a>
+                  </li>
+                  <li>
+                    <a>Settings</a>
+                  </li>
+                  <li>
+                    <a>Logout</a>
+                  </li>
+                </ul>
+              </div>
+
+              {/* <img src={user.photoURL} alt="Profile" className="w-8 h-8 rounded-full" />
+              <span className="ml-2">{user.displayName}</span> */}
+            </div>
+            <Link to="/dashboard">Dashboard</Link>
+            <button onClick={handleLogout}>Logout</button>
+          </>
+        ) : (
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+        )}
+      </div>
     </>
   );
   return (
@@ -137,28 +185,6 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{NavMenu}</ul>
       </div>
 
-      <div className="dropdown dropdown-end ">
-        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-          <div className="w-10 rounded-full">
-            <img src="https://i.ibb.co/YWZdQWV/Musical-Mingle-logo-removebg-preview.png" />
-          </div>
-        </label>
-        <ul
-          tabIndex={0}
-          className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 text-white rounded-box w-52"
-        >
-          <li>
-            <a className="justify-between">Profile</a>
-          </li>
-          <li>
-            <a>Settings</a>
-          </li>
-          <li>
-            <a>Logout</a>
-          </li>
-        </ul>
-      </div>
-
       {/* <div className="dropdown dropdown-end ">
         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
           <div className="w-10 rounded-full">
@@ -180,6 +206,28 @@ const Navbar = () => {
           </li>
         </ul>
       </div> */}
+
+      <div className="dropdown dropdown-end ">
+        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+          <div className="w-10 rounded-full">
+            <img src="https://i.ibb.co/YWZdQWV/Musical-Mingle-logo-removebg-preview.png" />
+          </div>
+        </label>
+        <ul
+          tabIndex={0}
+          className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 text-white rounded-box w-52"
+        >
+          <li>
+            <a className="justify-between">Profile</a>
+          </li>
+          <li>
+            <a>Settings</a>
+          </li>
+          <li>
+            <a>Logout</a>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };

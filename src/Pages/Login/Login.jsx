@@ -12,7 +12,6 @@ const Login = () => {
     reset,
     formState: { errors },
   } = useForm();
-  const [disabled, setDisabled] = useState(true);
   const { signIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -33,19 +32,20 @@ const Login = () => {
         title: "success.",
         text: "You have successfully logged in!",
       });
+      reset()
       navigate(from, { replace: true });
     });
   };
 
   return (
-    <div className="login-bg bg-cover-pic hero min-h-screen bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 shadow-xl bg-opacity-30 ">
+    <div className="login-bg hero min-h-screen bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 shadow-xl bg-opacity-30 ">
       <Helmet>
         <title>Musical Mingle | Login</title>
       </Helmet>
       <div className=" grid lg:grid-cols-2 w-2/3 items-center ">
         <div className="card flex-shrink-0 shadow-2xl">
           <h1 className="text-4xl p-5 font-bold">Login!</h1>
-          <form onSubmit={handleLogin}>
+          <form onSubmit={handleSubmit(handleLogin)}>
             <div className="card-body">
               <div className="form-control">
                 <label className="label">
@@ -102,7 +102,7 @@ const Login = () => {
               <SocialLogin></SocialLogin>
               <p className="text-center mt-5 font-semibold text-white">
                 New to Musical Mingle? Please{" "}
-                <Link className="font-bold" to="/signUp">
+                <Link className="font-bold text-yellow-600" to="/register">
                   signUp
                 </Link>
               </p>
