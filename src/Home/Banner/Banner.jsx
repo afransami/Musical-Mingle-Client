@@ -33,7 +33,7 @@ const Banner = () => {
           className="parallax-bg"
           style={{
             "background-image":
-              "url(https://i.ibb.co/fqC31Nn/shubham-dhage-5-LQ-h5c-XB6-U-unsplash.jpg)",
+              "url(https://i.ibb.co/j6PwW58/group-kids-spending-time-after-school-together-handsome-friends-resting-after-classes-before-start-d.jpg)",
           }}
           data-swiper-parallax="-23%"
         ></div>

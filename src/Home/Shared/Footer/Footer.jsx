@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
     return (
         <div>
-            <footer className="footer footer-center p-4 bottom-0 fixed bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 container flex items-center justify-center">     
+            <footer className="footer footer-center p-4 bottom-0 fixed bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 shadow-xl bg-opacity-30 container flex items-center justify-center">     
             <Link><img className=' w-20 object-cover' src="https://i.ibb.co/YWZdQWV/Musical-Mingle-logo-removebg-preview.png" alt="" /></Link>         
   <div>
   <div className="grid grid-flow-col gap-4">  

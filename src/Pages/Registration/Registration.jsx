@@ -1,18 +1,17 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import PasswordToggle from "../../Components/PasswordToggle/PasswordToggle";
 import Swal from "sweetalert2";
 
 const Registration = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);    
+    setShowPassword(!showPassword);
   };
   const toggleConfirmPasswordVisibility = () => {
     setShowConfirmPassword(!showConfirmPassword);
@@ -28,7 +27,7 @@ const Registration = () => {
 
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
-  // const location = useLocation();
+  const location = useLocation();
 
   const from = location.state?.from?.pathname || "/";
 
@@ -50,8 +49,7 @@ const Registration = () => {
           })
             .then((res) => res.json())
             .then((data) => {
-              if (data.insertedId) {
-                reset();
+              if (data.insertedId) {              
                 Swal.fire({
                   position: "center",
                   icon: "success",
@@ -59,30 +57,32 @@ const Registration = () => {
                   showConfirmButton: false,
                   timer: 1500,
                 });
+                reset()
                 navigate(from, { replace: true });
-                // navigate('/');
+                // navigate("/");
               }
             });
         })
         .catch((error) => console.error(error.message));
       setError(error.message);
-      // navigate(from, { replace: true });
+      navigate(from, { replace: true });
     });
   };
 
   return (
-    <div className="login-bg hero min-h-screen bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 shadow-xl bg-opacity-30">
+    <div className="login-bg hero min-h-screen ">
       <Helmet>
         <title>Musical Mingle | Sign Up</title>
       </Helmet>
       <div className="grid lg:grid-cols-2 w-2/3 items-center">
-        
-        <div className="card flex-shrink-0 shadow-2xl">
+        <div className="card flex-shrink-0 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 shadow-xl bg-opacity-30">
           <h1 className="text-4xl p-5 font-bold">Sign Up!</h1>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="card-body">
               <div className="form-control">
-              <label htmlFor="name" className="block mb-1">Name</label> 
+                <label htmlFor="name" className="block mb-1">
+                  Name
+                </label>
                 <input
                   type="text"
                   placeholder="name"
@@ -95,7 +95,9 @@ const Registration = () => {
                 )}
               </div>
               <div className="form-control">
-              <label htmlFor="photoURL" className="block mb-1">Photo URL</label>                
+                <label htmlFor="photoURL" className="block mb-1">
+                  Photo URL
+                </label>
                 <input
                   type="url"
                   placeholder="Photo url"
@@ -107,7 +109,9 @@ const Registration = () => {
                 )}
               </div>
               <div className="form-control">
-              <label htmlFor="email" className="block mb-1">Email</label>
+                <label htmlFor="email" className="block mb-1">
+                  Email
+                </label>
                 <input
                   type="email"
                   placeholder="email"
@@ -121,95 +125,79 @@ const Registration = () => {
               </div>
 
               <div className="mb-4">
-        <label htmlFor="password" className="block mb-1">Password</label>
-        <div className="relative">
-          <input
-            type={showPassword ? 'text' : 'password'}
-            id="password"
-            {...register("password", {
-                required: true,
-                minLength: 6,
-                pattern: /(?=.*[!@#$%^&*])(?=.*[A-Z])/                    
-              })}
-            className="text-black w-full px-4 py-2 rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
-          />
+                <label htmlFor="password" className="block mb-1">
+                  Password
+                </label>
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    {...register("password", {
+                      required: true,
+                      minLength: 6,
+                      pattern: /(?=.*[!@#$%^&*])(?=.*[A-Z])/,
+                    })}
+                    className="text-black w-full px-4 py-2 rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
+                  />
 
-
-              {/* <div className="form-control relative mt-10">
-              <label htmlFor="Password" className="block mb-1">Password</label> */}
-              
-                {/* <label className="label ">
-                  <span className="label-text mb-5">Password</span>
-                </label>   */}
-
-                {/* <input                
-                type={showPassword ? 'text' : 'password'}
-                  placeholder="password"               
-                  
-                  {...register("password", {
-                    required: true,
-                    minLength: 6,
-                    pattern: /(?=.*[!@#$%^&*])(?=.*[A-Z])/                    
-                  })}
-                  className="input input-bordered text-black absolute w-full"
-                />                */}
-                
-                {errors.password?.type === "required" && (
-                  <p className="text-red-500" role="alert">
-                    password is required
-                  </p>
-                )}
-                {errors.password?.type === "minLength" && (
-                  <p className="text-red-500" role="alert">
-                    password must be 6 characters
-                  </p>
-                )}
-                {errors.password?.type === "pattern" && (
-                  <p className="text-red-500" role="alert">
-                    password must be at least 1 uppercase case and Password must
-                    contain at least one special character
-                  </p>
-                )}
-                <button
-                  type="button"
-                  onClick={togglePasswordVisibility}
-                  className="absolute top-2 right-2 text-gray-400 "
-                >
-                  {showPassword ? (
-                    <FaEye className="w-5 h-5"></FaEye>
-                  ) : (
-                    
-                    <FaEyeSlash className="w-5 h-5"></FaEyeSlash>
-                    
+                  {errors.password?.type === "required" && (
+                    <p className="text-red-500" role="alert">
+                      password is required
+                    </p>
                   )}
-                </button>
-              </div>
+                  {errors.password?.type === "minLength" && (
+                    <p className="text-red-500" role="alert">
+                      password must be 6 characters
+                    </p>
+                  )}
+                  {errors.password?.type === "pattern" && (
+                    <p className="text-red-500" role="alert">
+                      password must be at least 1 uppercase case and Password
+                      must contain at least one special character
+                    </p>
+                  )}
+                  <button
+                    type="button"
+                    onClick={togglePasswordVisibility}
+                    className="absolute top-2 right-2 text-gray-400 "
+                  >
+                    {showPassword ? (
+                      <FaEye className="w-5 h-5"></FaEye>
+                    ) : (
+                      <FaEyeSlash className="w-5 h-5"></FaEyeSlash>
+                    )}
+                  </button>
+                </div>
               </div>
 
               <div className="mb-4">
-        <label htmlFor="confirmPassword" className="block mb-1">Confirm Password</label>
-        <div className="relative">
-          <input
-            type={showConfirmPassword ? 'text' : 'password'}
-            id="confirmPassword"
-            {...register('confirmPassword', { required: true })}
-            className="text-black w-full px-4 py-2 rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
-          />
-          <button
-            type="button"
-            onClick={toggleConfirmPasswordVisibility}
-            className="absolute top-2 right-2 text-gray-400"
-          >
-            {showConfirmPassword ? (
-                <FaEye className="w-5 h-5"></FaEye>         
-            ) : (
-                <FaEyeSlash className="w-5 h-5"></FaEyeSlash>
-            )}
-          </button>
-        </div>
-        {errors.confirmPassword && <p className="text-red-500">Confirm Password is required</p>}
-      </div>
-           
+                <label htmlFor="confirmPassword" className="block mb-1">
+                  Confirm Password
+                </label>
+                <div className="relative">
+                  <input
+                    type={showConfirmPassword ? "text" : "password"}
+                    id="confirmPassword"
+                    {...register("confirmPassword", { required: true })}
+                    className="text-black w-full px-4 py-2 rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
+                  />
+                  <button
+                    type="button"
+                    onClick={toggleConfirmPasswordVisibility}
+                    className="absolute top-2 right-2 text-gray-400"
+                  >
+                    {showConfirmPassword ? (
+                      <FaEye className="w-5 h-5"></FaEye>
+                    ) : (
+                      <FaEyeSlash className="w-5 h-5"></FaEyeSlash>
+                    )}
+                  </button>
+                </div>
+                {errors.confirmPassword && (
+                  <p className="text-red-500">Confirm Password is required</p>
+                )}
+              </div>
+
               <p className="font-bold text-red-500 text-xl"></p>
               <div className="form-control ">
                 <input
@@ -217,21 +205,18 @@ const Registration = () => {
                   type="submit"
                   value="Sign Up"
                 />
-                
               </div>
               <SocialLogin></SocialLogin>
               <p className="text-center mt-5 font-semibold ">
-                  Already have an account? Please
-                  <Link className="text-green-600 font-bold" to="/login">
-                    <span className="text-yellow-600"> Login</span>
-                  </Link>
-                </p>              
+                Already have an account? Please
+                <Link className="text-green-600 font-bold" to="/login">
+                  <span className="text-yellow-500"> Login</span>
+                </Link>
+              </p>
             </div>
-            
           </form>
         </div>
       </div>
-  
     </div>
   );
 };

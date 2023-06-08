@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
+import { saveUser } from "../../api/auth";
 
 const SocialLogin = () => {
   const { googleSignIn } = useContext(AuthContext);
@@ -13,34 +14,63 @@ const SocialLogin = () => {
   const from = location.state?.from?.pathname || "/";
 
 
-  const handleGoogleLogin = () => {
-    googleSignIn().then((result) => {
-      const loggedInUser = result.user;
-      console.log(loggedInUser);
-
-      const saveUser = {
-        name: loggedInUser.displayName,
-        email: loggedInUser.email,
-      };
-
-      fetch("http://localhost:5000/users", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(saveUser),
-      })
-        .then((res) => res.json())
-        .then(() => {
+  const handleGoogleLogin = () => {   
+      googleSignIn()
+        .then(result => {
+          console.log(result.user)
+          
+          saveUser(result.user)
+          navigate(from, { replace: true })
           Swal.fire({
             icon: "success",
             title: "success.",
             text: "You have successfully logged in!",
           });
-          navigate(from, { replace: true });
-        });
-    });
-  };
+        })
+
+      };
+
+
+    // googleSignIn().then((result) => {
+    //   const loggedInUser = result.user;  
+    //   navigate(from, { replace: true });    
+    //   console.log(loggedInUser);      
+    //   Swal.fire({
+    //     icon: "success",
+    //     title: "success.",
+    //     text: "You have successfully logged in!",
+    //   });
+      
+    //   const saveUser = {
+    //     name: loggedInUser.displayName,
+    //     email: loggedInUser.email,        
+    //     photoURL: loggedInUser.photoURL,
+    //   };
+
+    //   fetch(`http://localhost:5000/users/${user?.email}`, {
+    //     method: "PUT",
+    //     headers: {
+    //       "content-type": "application/json",
+    //     },
+    //     body: JSON.stringify(saveUser),
+    //   })
+    //     .then((res) => res.json())
+    //     .then(() => {
+    //       Swal.fire({
+    //         icon: "success",
+    //         title: "success.",
+    //         text: "You have successfully logged in!",
+    //       });
+    //       navigate(from, { replace: true });
+    //     });
+
+
+
+        // navigate(from, { replace: true });
+    // });
+
+
+  
 
   return (
     <div>

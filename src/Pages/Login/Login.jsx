@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const {
@@ -17,14 +18,8 @@ const Login = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  const handleLogin = (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const email = form.email.value;
-    const password = form.password.value;
-    console.log(email, password);
-
-    signIn(email, password).then((result) => {
+  const handleLogin = (data) => {
+    signIn(data.email, data.password).then((result) => {
       const user = result.user;
       console.log(user);
       Swal.fire({
@@ -38,12 +33,12 @@ const Login = () => {
   };
 
   return (
-    <div className="login-bg hero min-h-screen bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 shadow-xl bg-opacity-30 ">
+    <div className="login-bg hero min-h-screen  ">
       <Helmet>
         <title>Musical Mingle | Login</title>
       </Helmet>
       <div className=" grid lg:grid-cols-2 w-2/3 items-center ">
-        <div className="card flex-shrink-0 shadow-2xl">
+        <div className="card flex-shrink-0 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 shadow-xl bg-opacity-30">
           <h1 className="text-4xl p-5 font-bold">Login!</h1>
           <form onSubmit={handleSubmit(handleLogin)}>
             <div className="card-body">
@@ -102,7 +97,7 @@ const Login = () => {
               <SocialLogin></SocialLogin>
               <p className="text-center mt-5 font-semibold text-white">
                 New to Musical Mingle? Please{" "}
-                <Link className="font-bold text-yellow-600" to="/register">
+                <Link className="font-bold text-yellow-500" to="/register">
                   signUp
                 </Link>
               </p>

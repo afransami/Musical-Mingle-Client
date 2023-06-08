@@ -10,7 +10,11 @@ import Login from "../../Pages/Login/Login";
 import Registration from "../../Pages/Registration/Registration";
 import Instructors from "../../Pages/Instructors/Instructors";
 import Classes from "../../Pages/Classes/Classes";
-import Dashboard from "../../Pages/Dashboard/Dashboard";
+import PrivateRoute from "./PrivateRoute";
+import Users from "../../Pages/Dashboard/Users";
+import Dashboard from "../Dashboard/Dashboard";
+import AddActivities from "../../Components/AddActivities/AddActivities";
+
 
 const router = createBrowserRouter([
   {
@@ -32,7 +36,7 @@ const router = createBrowserRouter([
       },
       {
         path: "instructors",
-        element: <Instructors></Instructors>,
+        element: <PrivateRoute><Instructors></Instructors></PrivateRoute>
       },
       {
         path: "classes",
@@ -54,15 +58,17 @@ const router = createBrowserRouter([
   },
 
 
-  // {
-  //   path: "dashboard",
-  //   element: (
-  //     <PrivateRoute>
-  //       <Dashboard></Dashboard>
-  //     </PrivateRoute>
-  //   ),
-  //   children: [],
-  // },
+  {
+    path: "dashboard",
+    element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+    children: [
+      {
+        path:'addActivities',
+        element: <AddActivities></AddActivities>,
+      },
+      
+    ],
+  },
 ]);
 
 export default router;
