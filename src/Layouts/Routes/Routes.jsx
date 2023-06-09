@@ -8,7 +8,7 @@ import ContactUs from "../../Home/Shared/ContactUs/ContactUs";
 import Address from "../../Home/Shared/Address/Address";
 import Login from "../../Pages/Login/Login";
 import Registration from "../../Pages/Registration/Registration";
-import Instructors from "../../Pages/Instructors/Instructors";
+import AllInstructors from "../../Pages/AllInstructors/AllInstructors";
 import Classes from "../../Pages/Classes/Classes";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../Dashboard/Dashboard";
@@ -33,7 +33,10 @@ const router = createBrowserRouter([
         path: "register",
         element: <Registration></Registration>,
       },
-      
+      {
+        path: "instructors",
+        element: <AllInstructors></AllInstructors>
+      },
       {
         path: "classes",
         element: <Classes></Classes>,
@@ -60,7 +63,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "instructors",
-        element: <PrivateRoute><Instructors></Instructors></PrivateRoute>
+        element: <PrivateRoute><AllInstructors></AllInstructors></PrivateRoute>
       },
       {
         path:'addAClass',

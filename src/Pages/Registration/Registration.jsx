@@ -115,21 +115,6 @@ const Registration = () => {
                   <p className="text-red-500">{errors.image.message}</p>
                 )}
               </div>
-
-              {/* <div className="form-control">
-                <label htmlFor="photoURL" className="block mb-1">
-                  Photo URL
-                </label>
-                <input
-                  type="url"
-                  placeholder="Photo url"
-                  {...register("photoURL", { required: true })}
-                  className="text-black w-full px-4 py-2 rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
-                />
-                {errors.photoUrl && (
-                  <span className="text-red-500">This field is required</span>
-                )}
-              </div> */}
               <div className="form-control">
                 <label htmlFor="email" className="block mb-1">
                   Email

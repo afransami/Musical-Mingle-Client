@@ -44,7 +44,7 @@ const Login = () => {
             <div className="card-body">
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text text-white">Email</span>
+                  <span className="label-text">Email</span>
                 </label>
                 <input
                   type="email"
@@ -58,7 +58,7 @@ const Login = () => {
                 )}
               </div>
               <div className="form-control">
-                <label className="label text-white">
+                <label className="label">
                   <span>Password</span>
                 </label>
                 <input
@@ -95,7 +95,7 @@ const Login = () => {
                 />
               </div>
               <SocialLogin></SocialLogin>
-              <p className="text-center mt-5 font-semibold text-white">
+              <p className="text-center mt-5 font-semibold">
                 New to Musical Mingle? Please{" "}
                 <Link className="font-bold text-yellow-500" to="/register">
                   signUp

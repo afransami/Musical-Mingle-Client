@@ -1,20 +1,18 @@
 import React from 'react';
-import useAllClasses from '../../Hooks/useAllClasses';
+import useAllInstructor from '../../Hooks/useAllInstructor';
 
 
+const AllInstructors = () => {
 
-
-
-const Classes = () => {
-    const [allClass] = useAllClasses();
-
+        const [AllInstructor] = useAllInstructor();
 
     return (
         <div>
+            <div>
       <div data-aos="fade-left">
         <p className="mt-20 text-5xl font-semibold text-center">
           <span className="text-yellow-400 underline text-center">All</span>{" "}
-          Classes
+          Instructors
         </p>
       </div>
       <div data-aos="fade-right">
@@ -26,17 +24,18 @@ const Classes = () => {
           private instructors.
         </p>
       </div>
-      <div data-aos="fade-down">
+
+      <div data-aos="fade-up">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 my-20">
-          {allClass.map((allClass) => (
+          {AllInstructor.map((AllInstructor) => (
             <div
-              key={allClass._id}
+              key={AllInstructor._id}
               className="card card-compact w-96 bg-base-100 shadow-xl hover:scale-110"
             >
               <figure>
                 <img
                   className="h-[270px] w-full"
-                  src={allClass.classImage}
+                  src={AllInstructor.instructorImage}
                   alt="picture"
                 />
               </figure>
@@ -44,21 +43,15 @@ const Classes = () => {
                 Popular
               </div>
               <div className="card-body bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600  bg-opacity-30 rounded-b-lg">
-                <h2 className="card-title">
-                  Music Genre: {allClass.className}
+                <p className="card-title">
+                  Instructor Name: {AllInstructor.instructorName}
+                </p>
+                <h2 className="text-md">
+                  Instructor Email: {AllInstructor.instructorEmail}
                 </h2>
-                <p className="text-md">
-                  Instructor Name: {allClass.instructorName}
-                </p>
-                <p className="text-md">
-                  Available Seats: {allClass.availableSeats}
-                </p>
-                <p className="text-md">
-                  Available Price: $ {allClass.price}
-                </p>
                 <div className="card-actions justify-end">
-                <button className="btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30">
-                    Select
+                <button className="btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 scale-110">
+                    View Details
                   </button>
                 </div>
               </div>
@@ -67,7 +60,8 @@ const Classes = () => {
         </div>
       </div>
     </div>
+        </div>
     );
 };
 
-export default Classes;
+export default AllInstructors;
