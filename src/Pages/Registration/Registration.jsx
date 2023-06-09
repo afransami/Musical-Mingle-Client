@@ -7,6 +7,7 @@ import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Swal from "sweetalert2";
 
+
 const Registration = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -31,15 +32,18 @@ const Registration = () => {
 
   const from = location.state?.from?.pathname || "/";
 
-  const onSubmit = (data) => {
-    createUser(data.email, data.password).then((result) => {
+  
+  const onSubmit = async (data) => {
+
+    createUser(data.email, data.password, data.photURL).then((result) => {
       const loggedUser = result.user;
       console.log(loggedUser);
       setError("");
 
       updateUserProfile(data.name, data.photURL)
         .then(() => {
-          const saveUser = { name: data.name, email: data.email };
+
+          const saveUser = { name: data.name, email: data.email, photoURL: data.photoURL };
           fetch("http://localhost:5000/users", {
             method: "POST",
             headers: {
@@ -49,7 +53,8 @@ const Registration = () => {
           })
             .then((res) => res.json())
             .then((data) => {
-              if (data.insertedId) {              
+              if (data.insertedId) {
+                reset();
                 Swal.fire({
                   position: "center",
                   icon: "success",
@@ -57,9 +62,9 @@ const Registration = () => {
                   showConfirmButton: false,
                   timer: 1500,
                 });
-                reset()
+                reset();
                 navigate(from, { replace: true });
-                // navigate("/");
+                navigate("/");
               }
             });
         })
@@ -94,7 +99,24 @@ const Registration = () => {
                   <span className="text-red-500">This field is required</span>
                 )}
               </div>
-              <div className="form-control">
+
+              <div className="mb-4">
+                <label htmlFor="image" className="block mb-1">
+                  Image
+                </label>
+                <input
+                  type="file"
+                  id="image"
+                  {...register("image", { required: "Please select an image" })}
+                  className="w-full"
+                  // onChange={handleImageChange}
+                />
+                {errors.image && (
+                  <p className="text-red-500">{errors.image.message}</p>
+                )}
+              </div>
+
+              {/* <div className="form-control">
                 <label htmlFor="photoURL" className="block mb-1">
                   Photo URL
                 </label>
@@ -107,7 +129,7 @@ const Registration = () => {
                 {errors.photoUrl && (
                   <span className="text-red-500">This field is required</span>
                 )}
-              </div>
+              </div> */}
               <div className="form-control">
                 <label htmlFor="email" className="block mb-1">
                   Email

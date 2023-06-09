@@ -28,7 +28,7 @@ const Navbar = () => {
         <Link to="/">Home</Link>
       </li>
       <li>
-        <Link to="/instructors">Instructors</Link>
+        <Link to="/dashboard/instructors">Instructors</Link>
       </li>
       <li>
         <Link to="/classes">Classes</Link>
@@ -38,7 +38,7 @@ const Navbar = () => {
         {user ? (
           <>
             <li>
-              <Link to="/dashboard/addActivities">Dashboard</Link>
+              <Link to="/dashboard">Dashboard</Link>
             </li>            
             <span className="btn-circle avatar">
             <img src={user?.photoURL} />
@@ -63,33 +63,7 @@ const Navbar = () => {
           </>
         )}
 
-        {/* {!isAuthenticated ? (
-          <div className="dropdown dropdown-end flex  justify-center">
-            <ul className="lg:flex justify-center">
-              <li>
-                <Link to="/dashboard">Dashboard</Link>
-              </li>
-              <li>
-                <button onClick={handleLogout}>Logout</button>
-              </li>
-              <li></li>
-            </ul>
-            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <img src={user?.photoURL} />
-              <div className="w-10 rounded-full">
-                {user
-                  ? <span className="ml-2">{user?.displayName}</span> || (
-                      
-                    )
-                  : " "}
-              </div>
-            </label>           
-          </div>
-        ) : (
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-        )} */}
+
      
     </>
   );

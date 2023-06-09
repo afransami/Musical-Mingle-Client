@@ -1,23 +1,45 @@
-import React from 'react';
-import { useQuery } from '@tanstack/react-query';
-import useAuth from './useAuth';
-import useAxiosSecure from './useAxiosSecure';
+// import { useEffect, useState } from "react";
+
+// export const useAdmin = (email) => {
+
+//   const [isAdmin, setIsAdmin] = useState(false);
+//   const [isAdminLoading, setIsAdminLoading] = useState(true);
+
+//   useEffect(() => {
+//     if (email) {
+//       fetch(`http://localhost:5000/admin?.email=${email}`)
+//         .then((res) => res.json())
+//         .then((data) => {
+//           if (data.role === "Admin") {
+//             console.log(data);
+//             setIsAdmin(true);
+//             setIsAdminLoading(false);
+//           }
+//         });
+//     }
+//   }, [email]);
+  
+//   return [isAdmin, isAdminLoading];
+// };
 
 
-const useAdmin = () => {
-    const {user}= useAuth();
-    const [axiosSecure]= useAxiosSecure()
-    const {data:isAdmin, isLoading: isAdminLoading}= useQuery({
-        queryKey: [ user?.email],
-                queryFn: async () => {
-                    const res= await  
-                    axiosSecure.get(`/users/admin/${user?.email}`)
-                    console.log('is admin response', res);
-                    return res.data.admin;
-                }                
-    })
+import { useEffect, useState } from "react";
 
-    return [isAdmin, isAdminLoading]
+export const useAdmin = (email) => {
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdminLoading, setIsAdminLoading] = useState(true);
+  useEffect(() => {
+    if (email) {
+      fetch(`http://localhost:5000/admin?email=${email}`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.role === "Admin") {
+            console.log(data);
+            setIsAdmin(true);
+            setIsAdminLoading(false);
+          }
+        });
+    }
+  }, [email]);
+  return [isAdmin, isAdminLoading];
 };
-
-export default useAdmin;

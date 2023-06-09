@@ -34,10 +34,7 @@ const router = createBrowserRouter([
         path: "register",
         element: <Registration></Registration>,
       },
-      {
-        path: "instructors",
-        element: <PrivateRoute><Instructors></Instructors></PrivateRoute>
-      },
+      
       {
         path: "classes",
         element: <Classes></Classes>,
@@ -63,9 +60,13 @@ const router = createBrowserRouter([
     element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
       {
-        path:'addActivities',
-        element: <AddActivities></AddActivities>,
+        path: "instructors",
+        element: <PrivateRoute><Instructors></Instructors></PrivateRoute>
       },
+      {
+        path:'addAClass',
+        element: <AddActivities></AddActivities>,
+      }     
       
     ],
   },

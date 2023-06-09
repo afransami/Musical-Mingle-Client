@@ -147,7 +147,7 @@ const AddActivities = () => {
           <input
             className="btn btn-block btn-outline btn-info"
             type="submit"
-            value="Update confirm"
+            value="Upload confirm"
           />
         </div>
       </Form>
