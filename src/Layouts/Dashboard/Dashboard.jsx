@@ -45,7 +45,7 @@ const Dashboard = () => {
         <ul className="menu p-4 h-full w-60 bg-yellow-600">
           {/* <!-- Sidebar content here --> */}
 
-          {isAdmin && (
+          {isAdmin ? (
             <>
               <li>
                 <NavLink to="/dashboard/home" className="uppercase">
@@ -65,7 +65,7 @@ const Dashboard = () => {
                 </NavLink>
               </li>
             </>
-          )}
+          ) : undefined}
 
           {isInstructor ? (
             <>

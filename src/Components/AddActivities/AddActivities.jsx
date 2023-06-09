@@ -30,7 +30,7 @@ const AddActivities = () => {
       };
       console.log(uploadForm);
   
-      fetch("http://localhost:5000/uploadForm", {
+      fetch("http://localhost:5000/class", {
         method: "post",
         headers: {
           "content-type": "application/json",
@@ -136,9 +136,9 @@ const AddActivities = () => {
               <option disabled selected>
                 Pick one
               </option>
-              <option>action</option>
-              <option>scientists</option>
-              <option>warriors</option>
+              <option>Country</option>
+              <option>Reggae</option>
+              <option>Blues</option>
             </select>
           </div>
         </div>
