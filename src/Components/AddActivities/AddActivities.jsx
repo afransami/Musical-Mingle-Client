@@ -1,56 +1,56 @@
-import React, { useContext } from 'react';
+import React, { useContext } from "react";
 
-import { Form } from 'react-router-dom';
-import { AuthContext } from '../../Provider/AuthProvider/AuthProvider';
-import Swal from 'sweetalert2';
+import { Form } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 const AddActivities = () => {
-    const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
-    const handleUpload = (event) => {
-      event.preventDefault();
-      const form = event.target;
-      const className = form.className.value;
-      const classImage = form.classImage.value;
-      const instructorName = form.instructorName.value;
-      const instructorEmail = form.instructorEmail.value;
-      const availableSeats = form.availableSeats.value;
-      const subCategory = form.subCategory.value;
-      const price = form.price.value;
+  const handleUpload = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const className = form.className.value;
+    const classImage = form.classImage.value;
+    const instructorName = form.instructorName.value;
+    const instructorEmail = form.instructorEmail.value;
+    const instructorImage = form.instructorImage.value;
+    const availableSeats = form.availableSeats.value;
+    const subCategory = form.subCategory.value;
+    const price = form.price.value;
 
-  
-      const uploadForm = {
-        className,
-        classImage,
-        instructorName,
-        instructorEmail,
-        availableSeats,
-        subCategory,
-        price       
-      };
-      console.log(uploadForm);
-  
-      fetch("http://localhost:5000/class", {
-        method: "post",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(uploadForm),
-      })
-        .then((res) => res.json())
-        .then((data) => console.log(data));
-        form.reset()
-      Swal.fire({
-        title: "success!",
-        text: "You have added a Toy Successfully",
-        icon: "success",
-        confirmButtonText: "Cool",
-      });
+    const uploadForm = {
+      className,
+      classImage,
+      instructorName,
+      instructorEmail,
+      instructorImage,
+      availableSeats,
+      subCategory,
+      price,
     };
+    console.log(uploadForm);
 
+    fetch("http://localhost:5000/class", {
+      method: "post",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(uploadForm),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+    form.reset();
+    Swal.fire({
+      title: "success!",
+      text: "You have added a Toy Successfully",
+      icon: "success",
+      confirmButtonText: "Cool",
+    });
+  };
 
-    return (
-        <div className="card-body">
+  return (
+    <div className="card-body">
       <h1 className="text-5xl text-center font-bold"> Upload Class Details </h1>
 
       <Form onSubmit={handleUpload}>
@@ -105,12 +105,24 @@ const AddActivities = () => {
           </div>
           <div className="form-control">
             <label className="label">
+              <span className="label-text">Instructor Image</span>
+            </label>
+            <input
+              type="url"
+              name="instructorImage"
+              placeholder="Instructor Image"
+              className="input input-bordered text-black"
+            />
+          </div>
+
+          <div className="form-control">
+            <label className="label">
               <span className="label-text">Available seats</span>
             </label>
             <input
               type="number"
               name="availableSeats"
-              placeholder="Available Seats"              
+              placeholder="Available Seats"
               className="input input-bordered text-black"
             />
           </div>
@@ -125,10 +137,10 @@ const AddActivities = () => {
               className="input input-bordered text-black"
             />
           </div>
-          
+
           <div className="form-control w-full max-w-xs">
             <select
-             className="input input-bordered text-black"
+              className="input input-bordered text-black"
               type="text"
               name="subCategory"
               placeholder="Sub Category"
@@ -152,7 +164,7 @@ const AddActivities = () => {
         </div>
       </Form>
     </div>
-    );
+  );
 };
 
 export default AddActivities;

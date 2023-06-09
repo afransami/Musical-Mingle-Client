@@ -1,26 +1,11 @@
-// import React, { useRef, useState } from "react";
-// Import Swiper React components
-// import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
-// import "swiper/css";
-// import "swiper/css/pagination";
-// import "swiper/css/navigation";
-
 import "./style.css";
-// import { Parallax, Pagination, Navigation } from "swiper";
-
 import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import SwiperCore, { Autoplay } from "swiper";
 import { Pagination } from "swiper";
-// import banner1 from "../../../assets/banner1.webp";
-// import banner2 from "../../../assets/banner2.webp";
-// import banner4 from "../../../assets/banner4.webp";
 import { Link } from "react-router-dom";
-// import "./Banner.css";
 import Aos from "aos";
 import "aos/dist/aos.css";
 
@@ -68,7 +53,7 @@ const Banner = () => {
                     day.
                   </p>
                   <Link to="/blog">
-                    <button className="btn dropShadow btn-primary text-white">
+                  <button className="btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30">
                       Our Blogs
                     </button>
                   </Link>
@@ -99,7 +84,7 @@ const Banner = () => {
                     day.
                   </p>
                   <Link to="/blog">
-                    <button className="btn dropShadow btn-primary text-white">
+                  <button className="btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30">
                       Our Blogs
                     </button>
                   </Link>
@@ -130,7 +115,7 @@ const Banner = () => {
                     day.
                   </p>
                   <Link to="/blog">
-                    <button className="btn dropShadow btn-primary text-white">
+                  <button className="btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30">
                       Our Blogs
                     </button>
                   </Link>

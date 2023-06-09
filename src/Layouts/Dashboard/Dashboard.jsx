@@ -25,7 +25,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="drawer lg:drawer-open">
+    <div className="drawer lg:drawer-open ">
       <Helmet>
         <title>Musical Mingle | Dashboard</title>
       </Helmet>
@@ -40,9 +40,9 @@ const Dashboard = () => {
           Open drawer
         </label>
       </div>
-      <div className="drawer-side ">
+      <div className="drawer-side">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-        <ul className="menu p-4 h-full w-60 bg-yellow-600">
+        <ul className="menu p-4 h-full w-60 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30">
           {/* <!-- Sidebar content here --> */}
 
           {isAdmin ? (

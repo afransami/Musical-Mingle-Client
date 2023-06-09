@@ -15,8 +15,6 @@ const usePopularClasses = () => {
             })
         },[])
         console.log(popularClass);
-      
-
 
 
     return [popularClass, loading];

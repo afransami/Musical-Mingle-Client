@@ -11,7 +11,6 @@ import Registration from "../../Pages/Registration/Registration";
 import Instructors from "../../Pages/Instructors/Instructors";
 import Classes from "../../Pages/Classes/Classes";
 import PrivateRoute from "./PrivateRoute";
-import Users from "../../Pages/Dashboard/Users";
 import Dashboard from "../Dashboard/Dashboard";
 import AddActivities from "../../Components/AddActivities/AddActivities";
 

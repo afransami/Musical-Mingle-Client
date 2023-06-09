@@ -1,7 +1,7 @@
 import React from "react";
 import usePopularClasses from "../../Hooks/usePopularClasses";
 
-const PopularClasses = () => {
+const PopularInstructor = () => {
   const [popularClass] = usePopularClasses();
 
   return (
@@ -9,7 +9,7 @@ const PopularClasses = () => {
       <div data-aos="fade-left">
         <p className="mt-20 text-5xl font-semibold text-center">
           <span className="text-yellow-400 underline text-center">Popular</span>{" "}
-          Classes
+          Instructors
         </p>
       </div>
       <div data-aos="fade-right">
@@ -21,7 +21,8 @@ const PopularClasses = () => {
           private instructors.
         </p>
       </div>
-      <div data-aos="fade-down">
+
+      <div data-aos="fade-up">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 my-20">
           {popularClass.map((popularClass) => (
             <div
@@ -31,7 +32,7 @@ const PopularClasses = () => {
               <figure>
                 <img
                   className="h-[270px] w-full"
-                  src={popularClass.classImage}
+                  src={popularClass.instructorImage}
                   alt="picture"
                 />
               </figure>
@@ -39,17 +40,14 @@ const PopularClasses = () => {
                 Popular
               </div>
               <div className="card-body bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600  bg-opacity-30 rounded-b-lg">
-                <h2 className="card-title">
-                  Music Genre: {popularClass.className}
-                </h2>
-                <p className="text-md">
+                <p className="card-title">
                   Instructor Name: {popularClass.instructorName}
                 </p>
-                <p className="text-md">
-                  Available Seats: {popularClass.availableSeats}
-                </p>
+                <h2 className="text-md">
+                  Instructor Email: {popularClass.instructorEmail}
+                </h2>
                 <div className="card-actions justify-end">
-                <button className="btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30">
+                <button className="btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 scale-110">
                     View Details
                   </button>
                 </div>
@@ -62,4 +60,4 @@ const PopularClasses = () => {
   );
 };
 
-export default PopularClasses;
+export default PopularInstructor;
