@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Helmet } from "react-helmet-async";
-import { FaBook, FaBookReader, FaHome, FaUserCog } from "react-icons/fa";
+import { FaBook, FaBookReader, FaHome, FaUserCog, FaWallet } from "react-icons/fa";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import { useAdmin } from "../../Hooks/useAdmin";
@@ -42,24 +42,24 @@ const Dashboard = () => {
       </div>
       <div className="drawer-side">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-        <ul className="menu p-4 h-full w-60 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30">
+        <ul className="menu p-4 h-full w-80 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30">
           {/* <!-- Sidebar content here --> */}
 
           {isAdmin ? (
             <>
               <li>
-                <NavLink to="/dashboard/home" className="uppercase">
+                <NavLink to="/dashboard/home" className="uppercase btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 text-lg hover:scale-110">
                   <FaHome></FaHome> Admin Home
                 </NavLink>
               </li>
 
               <li>
-                <NavLink to="/dashboard/manageClasses" className="uppercase">
+                <NavLink to="/dashboard/manageClasses" className="uppercase btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 text-lg hover:scale-110">
                   <FaBookReader></FaBookReader> Manage Classes
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/manageUsers" className="uppercase">
+                <NavLink to="/dashboard/manageUsers" className="uppercase btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 text-lg hover:scale-110">
                   <FaUserCog></FaUserCog>
                   Manage Users
                 </NavLink>
@@ -71,13 +71,13 @@ const Dashboard = () => {
             <>
               {" "}
               <li>
-                <NavLink to="/dashboard/addAClass" className="uppercase">
+                <NavLink to="/dashboard/addAClass" className="uppercase btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 text-lg hover:scale-110">
                   <FaUserCog></FaUserCog>
                   Add a Class
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/myClasses" className="uppercase">
+                <NavLink to="/dashboard/myClasses" className="uppercase btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 text-lg hover:scale-110">
                   <FaUserCog></FaUserCog>
                   My Classes
                 </NavLink>
@@ -90,8 +90,8 @@ const Dashboard = () => {
               {" "}
               <li>
                 <NavLink
-                  to="/dashboard/mySelectedClasses"
-                  className="uppercase"
+                  to="/dashboard/studentsclasses"
+                  className="uppercase btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 text-lg hover:scale-110"
                 >
                   <FaUserCog></FaUserCog>
                   My Selected Classes
@@ -100,10 +100,19 @@ const Dashboard = () => {
               <li>
                 <NavLink
                   to="/dashboard/myEnrolledClasses"
-                  className="uppercase"
+                  className="uppercase btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 text-lg hover:scale-110"
                 >
                   <FaUserCog></FaUserCog>
                   My Enrolled Classes
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/payment"
+                  className="uppercase btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 text-lg hover:scale-110"
+                >
+                  <FaWallet></FaWallet>
+                  Payment History
                 </NavLink>
               </li>
             </>
@@ -112,7 +121,7 @@ const Dashboard = () => {
           <p className="divider"></p>
 
           <li>
-            <NavLink to="/" className="uppercase">
+            <NavLink to="/" className="uppercase btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 text-lg hover:scale-110">
               <FaHome></FaHome> Home
             </NavLink>
           </li>

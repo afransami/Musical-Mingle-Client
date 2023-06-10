@@ -44,17 +44,14 @@ const Banner = () => {
               <div className=" absolute flex justify-start transform -translate-y-1/2 left-30 top-1/2 text-white">
                 <div data-aos="fade-right" className="max-w-md px-5 lg:px-0 ">
                   <h1 className="mb-5 hero-heading lg:text-5xl text-2xl  font-bold">
-                    Only We Provides, Second Hand Books With Best Quality.
+                  Lifelong Learning:
                   </h1>
-                  <p className="text-gray-200 mb-3">
-                    Despite the enormous quantity of books, how few people read!
-                    And if one reads profitably, one would realize how much
-                    stupid stuff the vulgar herd is content to swallow every
-                    day.
+                  <p className="text-gray-200 mb-3 text-xl">
+                  Music is a lifelong journey of learning and growth. Practicing music allows individuals to continually challenge themselves, set new goals, and expand their musical horizons. It fosters a lifelong love and appreciation for music.
                   </p>
                   <Link to="/blog">
-                  <button className="btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30">
-                      Our Blogs
+                  <button className="btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 hover:scale-110">
+                      See more
                     </button>
                   </Link>
                 </div>
@@ -75,17 +72,14 @@ const Banner = () => {
               <div className=" absolute flex justify-start transform -translate-y-1/2 left-30 top-1/2 text-white">
                 <div data-aos="fade-right" className="max-w-md px-5 lg:px-0">
                   <h1 className="mb-5 hero-heading lg:text-5xl text-2xl font-bold capitalize">
-                    Are You a book lover? collections is only for you.
+                  Creativity and Artistry:
                   </h1>
-                  <p className="text-gray-200 mb-3">
-                    Despite the enormous quantity of books, how few people read!
-                    And if one reads profitably, one would realize how much
-                    stupid stuff the vulgar herd is content to swallow every
-                    day.
+                  <p className="text-gray-200 mb-3 text-xl">
+                  Regular practice nurtures musicians' creativity and encourages them to explore new musical ideas and styles. It allows for improvisation, experimentation, and the development of a unique musical voice.
                   </p>
                   <Link to="/blog">
-                  <button className="btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30">
-                      Our Blogs
+                  <button className="btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 hover:scale-110">
+                  See more
                     </button>
                   </Link>
                 </div>
@@ -106,17 +100,14 @@ const Banner = () => {
               <div className=" absolute flex justify-start transform -translate-y-1/2 left-30 top-1/2 text-white">
                 <div data-aos="fade-right" className="max-w-md px-5 lg:px-0">
                   <h1 className="mb-5 hero-heading lg:text-5xl text-2xl font-bold">
-                    Find Your Books & Buys With Reasoneable Price.
+                  Expressive Communication:
                   </h1>
-                  <p className="text-gray-200 mb-3">
-                    Despite the enormous quantity of books, how few people read!
-                    And if one reads profitably, one would realize how much
-                    stupid stuff the vulgar herd is content to swallow every
-                    day.
+                  <p className="text-gray-200 mb-3 text-xl">
+                   Music is a powerful form of self-expression. By practicing music, individuals learn to convey emotions and tell stories through their playing or singing. It allows musicians to communicate and connect with others on a deeper level.
                   </p>
                   <Link to="/blog">
-                  <button className="btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30">
-                      Our Blogs
+                  <button className="btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 hover:scale-110">
+                  See more
                     </button>
                   </Link>
                 </div>

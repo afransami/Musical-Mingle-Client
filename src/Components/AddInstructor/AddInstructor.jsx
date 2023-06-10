@@ -85,7 +85,7 @@ const AddInstructor = () => {
         </div>
         <div className="form-control mt-6">
           <input
-            className="btn btn-block btn-outline btn-info"
+            className="btn btn-block btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 text-3xl hover:scale-110"
             type="submit"
             value="Upload confirm"
           />

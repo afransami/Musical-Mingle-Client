@@ -49,7 +49,7 @@ const Navbar = () => {
             <span className="flex justify-center items-center">
               <button
                 onClick={handleLogOut}
-                className="btn btn-active btn-ghost"
+                className="btn btn-outline btn-warning border-0 border-b-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 hover:scale-110"             
               >
                 Log out
               </button>{" "}

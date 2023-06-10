@@ -2,9 +2,6 @@ import React from 'react';
 import useAllClasses from '../../Hooks/useAllClasses';
 
 
-
-
-
 const Classes = () => {
     const [allClass] = useAllClasses();
 
@@ -40,9 +37,7 @@ const Classes = () => {
                   alt="picture"
                 />
               </figure>
-              <div className=" badge badge-warning font-bold text-md -top-4 p-4 right-5 absolute">
-                Popular
-              </div>
+              
               <div className="card-body bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600  bg-opacity-30 rounded-b-lg">
                 <h2 className="card-title">
                   Music Genre: {allClass.className}
