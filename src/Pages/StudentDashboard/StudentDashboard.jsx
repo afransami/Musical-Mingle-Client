@@ -2,11 +2,12 @@
 import { FaPaypal, FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useClassDelete from "../../Hooks/useClassDelete";
+import useAllClasses from "../../Hooks/useAllClasses";
 
 const StudentDashboard = () => {
 //   const [selectedClass, setSelectedClass] = useState([]);
   const [cart, refetch] = useClassDelete();
-
+  const [allClass] = useAllClasses();
 
   const handleDelete=(selectClass)=>{
     Swal.fire({
@@ -49,12 +50,12 @@ const StudentDashboard = () => {
 //   console.log(selectedClass);
 
   return (
-    <div className="text-center">
+    <div className="text-center w-2/3">
       <h1 className="mb-10 text-3xl text-center font-bold uppercase btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 hover:scale-110">My Selected Classes</h1>
-      <div className="overflow-x-auto w-full">
-        <table className="table w-full">
+      <div className="overflow-x-auto w-full text-center">
+        <table className="table w-full text-center">
           {/* head */}
-          <thead>
+          <thead className="w-2/3">
             <tr className="text-lg text-center font-bold uppercase btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30">
               <th>#</th>
               <th>Class Image</th>
@@ -77,7 +78,7 @@ const StudentDashboard = () => {
                 </td>
                 <td>{selectClass.className}</td>
                 <td className="text-end">$ {selectClass.price}</td>
-                <td className="gap-4 flex">
+                <td className="gap-4 flex justify-center">
                   <button
                     onClick={() => handleDelete(selectClass)}
                     className="btn btn-outline btn-warning border-0 border-b-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 hover:scale-110 text-white btn-xs w-12 h-12 text-2xl"
@@ -85,7 +86,7 @@ const StudentDashboard = () => {
                     <FaTrashAlt></FaTrashAlt>
                   </button>
                   <button
-                    onClick={() => handleDelete(selectClass)}
+                    onClick={() => handlePay(selectClass)}
                     className="btn btn-outline btn-warning border-0 border-b-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 hover:scale-110 text-white btn-xs w-12 h-12 text-2xl"
                   >
                     <FaPaypal></FaPaypal>
