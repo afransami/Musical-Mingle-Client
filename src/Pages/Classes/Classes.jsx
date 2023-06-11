@@ -1,67 +1,32 @@
-import React, { useContext } from "react";
-import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
+import React, { useContext, useEffect, useState } from "react";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
-import { useLocation, useNavigate } from "react-router-dom";
-import useCart from "../../Hooks/useCart";
-import useSelectClass from "../../Hooks/useSelectClass";
-
+import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 
 const Classes = () => {
-  
-  const [cart, refetch] = useCart();
-  const [bookClass] = useSelectClass();
-  const navigate = useNavigate();
-  const location = useLocation();
-  const { user } = useContext(AuthContext);
+    const {user} = useContext(AuthContext)
+  const [axiosSecure] = useAxiosSecure();
+  const [dataList, setDataList] = useState([]);
 
-  
-  const { className, classImage, instructorName, availableSeats, price, _id } =bookClass;
-  const handleAddClass = () => {
-      if (user && user.email) {
-      const classItem = {
-        menuItemId: _id,
-        className,
-        classImage,
-        instructorName,
-        availableSeats,
-        price,
-        email: user.email,
-      };
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-      fetch("http://localhost:5000/selectedClass", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(classItem),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log("Class booked successfully:", data);
-          if (data.insertedId) {
-            refetch(); 
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "class added on the list.",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-          }
-        });
-    } else {
-      Swal.fire({
-        title: "Please login to select class",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Login now!",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          navigate("/login", { state: { from: location } });
-        }
-      });
+  const fetchData = async () => {
+    try {
+      const response = await axiosSecure.get("/class");
+      setDataList(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleAddToDatabase = async (item) => {
+    try {
+      await axiosSecure.post("/selectedClasses", item);
+      console.log("Class added to db");
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -84,12 +49,8 @@ const Classes = () => {
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 my-20">
-        {cart.map((item) => (
-          <div
-            key={item._id}
-            data-aos="fade-down"
-            
-          >
+        {dataList.map((item) => (
+          <div key={item._id} data-aos="fade-down">
             <div className="card card-compact w-96 bg-base-100 shadow-xl hover:scale-110">
               <figure>
                 <img
@@ -110,7 +71,7 @@ const Classes = () => {
                 <p className="text-md">Available Price: $ {item.price}</p>
                 <div className="card-actions justify-end">
                   <button
-                    onClick={handleAddClass}
+                    onClick={() => handleAddToDatabase(item)}
                     className="btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30"
                   >
                     Select
@@ -126,37 +87,3 @@ const Classes = () => {
 };
 
 export default Classes;
-
-{
-  /* <Classes key={item._id} item={item}></Classes> */
-}
-{
-  /* <div data-aos="fade-down">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 my-20">
-          <div className="card card-compact w-96 bg-base-100 shadow-xl hover:scale-110">
-            <figure>
-              <img
-                className="h-[270px] w-full"
-                src={classImage}
-                alt="picture"
-              />
-            </figure>
-
-            <div className="card-body bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600  bg-opacity-30 rounded-b-lg">
-              <h2 className="card-title">Music Genre: {className}</h2>
-              <p className="text-md">Instructor Name: {instructorName}</p>
-              <p className="text-md">Available Seats: {availableSeats}</p>
-              <p className="text-md">Available Price: $ {price}</p>
-              <div className="card-actions justify-end">
-                <button
-                 onClick={() => handleAddClass(item)}
-                  className="btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30"
-                >
-                  Select
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */
-}

@@ -3,14 +3,16 @@ import { Helmet } from "react-helmet-async";
 import { FaBook, FaBookReader, FaHome, FaUserCog, FaWallet } from "react-icons/fa";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
-import { useAdmin } from "../../Hooks/useAdmin";
+// import { useAdmin } from "../../Hooks/useAdmin";
 import { useInstructor } from "../../Hooks/useInstructor";
 import { useStudent } from "../../Hooks/useStudent";
 import Loader from "../../Home/Shared/Loader/Loader";
+import useAdmin from "../../Hooks/useAdmin";
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
-  const [isAdmin, isAdminLoading] = useAdmin(user?.email);
+  // const [isAdmin, isAdminLoading] = useAdmin(user?.email);
+  const [isAdmin, isAdminLoading] = useAdmin();
   const [isInstructor, isInstructorLoading] = useInstructor(user?.email);
   const [isStudent, isStudentLoading] = useStudent(user?.email);
 
