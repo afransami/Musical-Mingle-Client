@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
  const useSelectClass = () => {
     const [bookClass, setBookClass]= useState([])
@@ -14,10 +14,11 @@ import { useEffect } from "react";
                 setLoading(false);
             });
     }, [])
-   
+
+//    console.log({bookClass});
     return [bookClass, loading]
 }
 
-export default [useSelectClass ];
+export default useSelectClass;
 
 

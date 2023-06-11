@@ -2,12 +2,10 @@
 import { FaPaypal, FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useClassDelete from "../../Hooks/useClassDelete";
-import useAllClasses from "../../Hooks/useAllClasses";
 
 const StudentDashboard = () => {
-//   const [selectedClass, setSelectedClass] = useState([]);
+
   const [cart, refetch] = useClassDelete();
-  const [allClass] = useAllClasses();
 
   const handleDelete=(selectClass)=>{
     Swal.fire({
@@ -39,15 +37,6 @@ const StudentDashboard = () => {
       })
   }
 
-//   useEffect(() => {
-//     fetch("http://localhost:5000/class")
-//       .then((res) => res.json())
-//       .then((data) => {
-//         setSelectedClass(data);
-//         setLoading(false);
-//       });
-//   }, []);
-//   console.log(selectedClass);
 
   return (
     <div className="text-center w-2/3">

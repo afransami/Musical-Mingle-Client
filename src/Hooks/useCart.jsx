@@ -7,13 +7,14 @@ const useCart = () => {
     const { user } = useContext(AuthContext);
 
     const { refetch, data: cart = [] } = useQuery({
-        queryKey: ['class', user?.email],
+        queryKey: ['class', user?.email, user?.className],
         queryFn: async () => {
-            // const res = await fetch('http://localhost:5000/class')
-            const res = await fetch(`http://localhost:5000/class?email=${user?.email}`)
+            const res = await fetch('http://localhost:5000/class')
+            // const res = await fetch(`http://localhost:5000/class?email=${user?.email}`)
             return res.json();
         },
     })
+    console.log({cart});
 
     return [cart, refetch]
 

@@ -15,7 +15,7 @@ const usePopularClasses = () => {
             setLoading(false);
             })
         },[])
-        console.log(popularClass);
+        // console.log(popularClass);
 
        
     return [popularClass, loading];

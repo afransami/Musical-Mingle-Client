@@ -3,19 +3,21 @@ import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
 import useCart from "../../Hooks/useCart";
+import useSelectClass from "../../Hooks/useSelectClass";
 
 
-const Classes = ({item}) => {
-    console.log({item});
+const Classes = () => {
+  
   const [cart, refetch] = useCart();
+  const [bookClass] = useSelectClass();
   const navigate = useNavigate();
   const location = useLocation();
   const { user } = useContext(AuthContext);
 
-  const { className, classImage, instructorName, availableSeats, price, _id } =cart;
-
+  
+  const { className, classImage, instructorName, availableSeats, price, _id } =bookClass;
   const handleAddClass = () => {
-    if (user && user.email) {
+      if (user && user.email) {
       const classItem = {
         menuItemId: _id,
         className,
