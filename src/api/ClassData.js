@@ -1,5 +1,5 @@
 export const addClass = async classData => {
-    const res = await fetch('https://music-shcool-server.vercel.app/class', {
+    const res = await fetch('http://localhost:5000/class', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',

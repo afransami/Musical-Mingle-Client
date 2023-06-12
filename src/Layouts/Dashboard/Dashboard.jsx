@@ -1,9 +1,14 @@
 import React, { useContext } from "react";
 import { Helmet } from "react-helmet-async";
-import { FaBook, FaBookReader, FaHome, FaUserCog, FaWallet } from "react-icons/fa";
+import {
+  FaBook,
+  FaBookReader,
+  FaHome,
+  FaUserCog,
+  FaWallet,
+} from "react-icons/fa";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
-// import { useAdmin } from "../../Hooks/useAdmin";
 import { useInstructor } from "../../Hooks/useInstructor";
 import { useStudent } from "../../Hooks/useStudent";
 import Loader from "../../Home/Shared/Loader/Loader";
@@ -11,7 +16,6 @@ import useAdmin from "../../Hooks/useAdmin";
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
-  // const [isAdmin, isAdminLoading] = useAdmin(user?.email);
   const [isAdmin, isAdminLoading] = useAdmin();
   const [isInstructor, isInstructorLoading] = useInstructor(user?.email);
   const [isStudent, isStudentLoading] = useStudent(user?.email);
@@ -50,46 +54,55 @@ const Dashboard = () => {
           {isAdmin ? (
             <>
               <li>
-                <NavLink to="/dashboard/home" className="uppercase btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 text-lg hover:scale-110">
+                <NavLink
+                  to="/dashboard/home"
+                  className="uppercase btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 text-lg hover:scale-110"
+                >
                   <FaHome></FaHome> Admin Home
                 </NavLink>
               </li>
 
               <li>
-                <NavLink to="/dashboard/manageClasses" className="uppercase btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 text-lg hover:scale-110">
+                <NavLink
+                  to="/dashboard/manageClasses"
+                  className="uppercase btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 text-lg hover:scale-110"
+                >
                   <FaBookReader></FaBookReader> Manage Classes
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/allusers" className="uppercase btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 text-lg hover:scale-110">
+                <NavLink
+                  to="/dashboard/allusers"
+                  className="uppercase btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 text-lg hover:scale-110"
+                >
                   <FaUserCog></FaUserCog>
                   Manage Users
                 </NavLink>
               </li>
             </>
-          ) : undefined}
-
-          {isInstructor ? (
+          ) : isInstructor ? (
             <>
-              {" "}
               <li>
-                <NavLink to="/dashboard/addAClass" className="uppercase btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 text-lg hover:scale-110">
+                <NavLink
+                  to="/dashboard/addAClass"
+                  className="uppercase btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 text-lg hover:scale-110"
+                >
                   <FaUserCog></FaUserCog>
                   Add a Class
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/myClasses" className="uppercase btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 text-lg hover:scale-110">
+                <NavLink
+                  to="/dashboard/myClasses"
+                  className="uppercase btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 text-lg hover:scale-110"
+                >
                   <FaUserCog></FaUserCog>
                   My Classes
                 </NavLink>
               </li>
             </>
-          ) : undefined}
-
-          {isStudent ? (
+          ) : (
             <>
-              {" "}
               <li>
                 <NavLink
                   to="/dashboard/studentsclasses"
@@ -118,12 +131,15 @@ const Dashboard = () => {
                 </NavLink>
               </li>
             </>
-          ) : undefined}
+          )}
 
           <p className="divider"></p>
 
           <li>
-            <NavLink to="/" className="uppercase btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 text-lg hover:scale-110">
+            <NavLink
+              to="/"
+              className="uppercase btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 text-lg hover:scale-110"
+            >
               <FaHome></FaHome> Home
             </NavLink>
           </li>

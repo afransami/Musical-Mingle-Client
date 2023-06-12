@@ -71,10 +71,10 @@ const router = createBrowserRouter([
         path: "studentsclasses",
         element: <StudentDashboard></StudentDashboard>,
       },
-      // {
-      //   path: "instructors",
-      //   element: <PrivateRoute><AllInstructors></AllInstructors></PrivateRoute>
-      // },
+      {
+        path: "instructors",
+        element: <PrivateRoute><AllInstructors></AllInstructors></PrivateRoute>
+      },
       {
         path:'addAClass',
         element: <AddActivities></AddActivities>,

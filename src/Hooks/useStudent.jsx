@@ -7,7 +7,7 @@ export const useStudent = (email) => {
 
   useEffect(() => {
     if (email) {
-      fetch(`https://music-shcool-server.vercel.app/student?email=${email}`)
+      fetch(`http://localhost:5000/student?email=${email}`)
       .then((res) => res.json())
       .then((data) => {
           if (data.role === "Student") {
@@ -29,7 +29,7 @@ export const useStudent = (email) => {
 //   const [isAdminLoading, setIsAdminLoading] = useState(true);
 //   useEffect(() => {
 //     if (email) {
-//       fetch(`https://music-shcool-server.vercel.app/admin?email=${email}`)
+//       fetch(`http://localhost:5000/admin?email=${email}`)
 //         .then((res) => res.json())
 //         .then((data) => {
 //           if (data.role === "Admin") {

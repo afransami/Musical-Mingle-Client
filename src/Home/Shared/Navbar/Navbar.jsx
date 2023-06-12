@@ -62,13 +62,10 @@ const Navbar = () => {
             </li>
           </>
         )}
-
-
-     
     </>
   );
   return (
-    <div className="navbar fixed z-10 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 container flex justify-between px-10 h-16">
+    <div className="navbar fixed z-10 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30  flex justify-between h-16 mx-auto container">
 
       <div className="">
         <div className="dropdown">
