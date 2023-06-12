@@ -7,7 +7,6 @@ import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Swal from "sweetalert2";
 
-
 const Registration = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -32,9 +31,7 @@ const Registration = () => {
 
   const from = location.state?.from?.pathname || "/";
 
-  
   const onSubmit = async (data) => {
-
     createUser(data.email, data.password, data.photURL).then((result) => {
       const loggedUser = result.user;
       console.log(loggedUser);
@@ -42,8 +39,11 @@ const Registration = () => {
 
       updateUserProfile(data.name, data.photURL)
         .then(() => {
-
-          const saveUser = { name: data.name, email: data.email, photoURL: data.photoURL };
+          const saveUser = {
+            name: data.name,
+            email: data.email,
+            photoURL: data.photoURL,
+          };
           fetch("http://localhost:5000/users", {
             method: "POST",
             headers: {

@@ -16,7 +16,6 @@ import AddActivities from "../../Components/AddActivities/AddActivities";
 import StudentDashboard from "../../Pages/StudentDashboard/StudentDashboard";
 import Admin from "../../Pages/Dashboard/Admin/Admin";
 
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -37,7 +36,7 @@ const router = createBrowserRouter([
       },
       {
         path: "instructors",
-        element: <AllInstructors></AllInstructors>
+        element: <AllInstructors></AllInstructors>,
       },
       {
         path: "classes",
@@ -58,28 +57,42 @@ const router = createBrowserRouter([
     ],
   },
 
-
   {
     path: "dashboard",
-    element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "allusers",
-        element: <Admin></Admin>
+        element: (
+          <PrivateRoute>
+            <Admin></Admin>
+          </PrivateRoute>
+        ),
       },
       {
         path: "studentsclasses",
-        element: <StudentDashboard></StudentDashboard>,
+        element: (
+          <PrivateRoute>
+            <StudentDashboard></StudentDashboard>
+          </PrivateRoute>
+        ),
       },
       {
         path: "instructors",
-        element: <PrivateRoute><AllInstructors></AllInstructors></PrivateRoute>
+        element: (
+          <PrivateRoute>
+            <AllInstructors></AllInstructors>
+          </PrivateRoute>
+        ),
       },
       {
-        path:'addAClass',
+        path: "addAClass",
         element: <AddActivities></AddActivities>,
-      }     
-      
+      },
     ],
   },
 ]);

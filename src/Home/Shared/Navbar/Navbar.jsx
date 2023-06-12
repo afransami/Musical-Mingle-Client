@@ -9,7 +9,6 @@ const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
 
   const handleLogOut = () => {
-    // Perform logout logic
     setIsAuthenticated(false);
     logOut()
       .then(() => {})
@@ -34,39 +33,37 @@ const Navbar = () => {
         <Link to="/classes">Classes</Link>
       </li>
 
-      
-        {user ? (
-          <>
-            <li>
-              <Link to="/dashboard">Dashboard</Link>
-            </li>            
-            <span className="btn-circle avatar">
-            <img src={user?.photoURL} />
-            </span>
-            <span className="flex justify-center items-center mx-4 ">              
-              {user?.displayName}
-            </span>
-            <span className="flex justify-center items-center">
-              <button
-                onClick={handleLogOut}
-                className="btn btn-outline btn-warning border-0 border-b-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 hover:scale-110"             
-              >
-                Log out
-              </button>{" "}
-            </span>
-          </>
-        ) : (
-          <>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-          </>
-        )}
+      {user ? (
+        <>
+          <li>
+            <Link to="/dashboard">Dashboard</Link>
+          </li>
+          <span>
+            <img className="border-4 btn-circle " src={user?.photoURL} />
+          </span>
+          <span className="flex justify-center items-center mx-4 ">
+            {user?.displayName}
+          </span>
+          <span className="flex justify-center items-center">
+            <button
+              onClick={handleLogOut}
+              className="btn btn-outline btn-warning border-0 border-b-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 hover:scale-110"
+            >
+              Log out
+            </button>{" "}
+          </span>
+        </>
+      ) : (
+        <>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+        </>
+      )}
     </>
   );
   return (
     <div className="navbar fixed z-10 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30  flex justify-between h-16 mx-auto container">
-
       <div className="">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -113,84 +110,8 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex items-center justify-between">
         <ul className="menu menu-horizontal px-1">{NavMenu}</ul>
       </div>
-
-      {/* <div className="dropdown dropdown-end ">
-        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-          <div className="w-10 rounded-full">
-            <img src="https://i.ibb.co/YWZdQWV/Musical-Mingle-logo-removebg-preview.png" />
-          </div>
-        </label>
-        <ul
-          tabIndex={0}
-          className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 text-white rounded-box w-52"
-        >
-          <li>
-            <a className="justify-between">Profile</a>
-          </li>
-          <li>
-            <a>Settings</a>
-          </li>
-          <li>
-            <a>Logout</a>
-          </li>
-        </ul>
-      </div> */}
-
-      {/* <div className="dropdown dropdown-end ">
-        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-          <div className="w-10 rounded-full">
-            <img src={user.photoURL} />
-            <span className="ml-2">{user?.displayName}</span>
-          </div>
-          <div className="w-10 rounded-full">
-            <img src="" />
-          </div>
-        </label>
-        <ul
-          tabIndex={0}
-          className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 text-white rounded-box w-52"
-        >
-          <li>
-            <a className="justify-between">Profile</a>
-          </li>
-          <li>
-            <a>Settings</a>
-          </li>
-          <li>
-            <a>Logout</a>
-          </li>
-        </ul>
-      </div> */}
     </div>
   );
 };
 
 export default Navbar;
-
-// {
-//   /* <ul className="flex items-center">
-//               <div className="dropdown dropdown-end ">
-//                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-//                   <div className="w-10 rounded-full">
-//                     <img src={user.photoURL} />
-//                     <span className="ml-2">{user.displayName}</span>
-//                   </div>
-//                 </label>
-//                 <ul
-//                   tabIndex={0}
-//                   className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 text-white rounded-box w-52"
-//                 >
-//                   <li>
-//                     <a className="justify-between">Profile</a>
-//                   </li>
-//                   <li>
-//                     <a>Settings</a>
-//                   </li>
-//                   <li>
-//                     <button onClick={handleLogout}>Logout</button>
-//                   </li>
-//                 </ul>
-//               </div>
-
-//             </ul> */
-// }

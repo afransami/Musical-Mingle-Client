@@ -1,34 +1,25 @@
 import React, { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import {
+  FaAddressCard,
   FaBook,
+  FaBookOpen,
   FaBookReader,
   FaHome,
   FaUserCog,
   FaWallet,
 } from "react-icons/fa";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import { useInstructor } from "../../Hooks/useInstructor";
 import { useStudent } from "../../Hooks/useStudent";
-import Loader from "../../Home/Shared/Loader/Loader";
-import useAdmin from "../../Hooks/useAdmin";
+import { useAdminDashboard } from "../../Hooks/useAdminDashboard";
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
-  const [isAdmin, isAdminLoading] = useAdmin();
-  const [isInstructor, isInstructorLoading] = useInstructor(user?.email);
-  const [isStudent, isStudentLoading] = useStudent(user?.email);
-
-  if (isAdmin && isAdminLoading) {
-    return <Loader />;
-  }
-  if (isInstructor && isInstructorLoading) {
-    return <Loader />;
-  }
-  if (isStudent && isStudentLoading) {
-    return <Loader />;
-  }
+  const [isAdmin] = useAdminDashboard(user.email);
+  const [isInstructor] = useInstructor(user.email);
+  const [isStudent] = useStudent(user.email);
 
   return (
     <div className="drawer lg:drawer-open ">
@@ -51,7 +42,7 @@ const Dashboard = () => {
         <ul className="menu p-4 h-full w-80 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30">
           {/* <!-- Sidebar content here --> */}
 
-          {isAdmin ? (
+          {isAdmin && (
             <>
               <li>
                 <NavLink
@@ -80,14 +71,16 @@ const Dashboard = () => {
                 </NavLink>
               </li>
             </>
-          ) : isInstructor ? (
+          )}
+
+          {isInstructor && (
             <>
               <li>
                 <NavLink
                   to="/dashboard/addAClass"
                   className="uppercase btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 text-lg hover:scale-110"
                 >
-                  <FaUserCog></FaUserCog>
+                  <FaAddressCard></FaAddressCard>
                   Add a Class
                 </NavLink>
               </li>
@@ -96,19 +89,21 @@ const Dashboard = () => {
                   to="/dashboard/myClasses"
                   className="uppercase btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 text-lg hover:scale-110"
                 >
-                  <FaUserCog></FaUserCog>
+                  <FaBookReader></FaBookReader>
                   My Classes
                 </NavLink>
               </li>
             </>
-          ) : (
+          )}
+
+          {isStudent && (
             <>
               <li>
                 <NavLink
                   to="/dashboard/studentsclasses"
                   className="uppercase btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 text-lg hover:scale-110"
                 >
-                  <FaUserCog></FaUserCog>
+                  <FaBook></FaBook>
                   My Selected Classes
                 </NavLink>
               </li>
@@ -117,7 +112,7 @@ const Dashboard = () => {
                   to="/dashboard/myEnrolledClasses"
                   className="uppercase btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 text-lg hover:scale-110"
                 >
-                  <FaUserCog></FaUserCog>
+                  <FaBookOpen></FaBookOpen>
                   My Enrolled Classes
                 </NavLink>
               </li>

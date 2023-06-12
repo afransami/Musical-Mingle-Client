@@ -27,7 +27,7 @@ const Login = () => {
         title: "success.",
         text: "You have successfully logged in!",
       });
-      reset()
+      reset();
       navigate(from, { replace: true });
     });
   };

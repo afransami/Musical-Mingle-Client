@@ -18,13 +18,6 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
-  // const [role, setRole] = useState(null);
-
-  // useEffect(() => {
-  //   if (user) {
-  //     getRole(user.email).then((data) => setRole(data));
-  //   }
-  // }, [user]);
 
   const googleSignIn = () => {
     setLoading(true);
@@ -72,8 +65,6 @@ const AuthProvider = ({ children }) => {
     googleSignIn,
     signIn,
     updateUserProfile,
-    // role,
-    // setRole,
   };
 
   return (

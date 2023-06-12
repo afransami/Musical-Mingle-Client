@@ -1,10 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 
 const Classes = () => {
-    const {user} = useContext(AuthContext)
   const [axiosSecure] = useAxiosSecure();
   const [dataList, setDataList] = useState([]);
 

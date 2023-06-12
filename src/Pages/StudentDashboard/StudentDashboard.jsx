@@ -4,43 +4,38 @@ import Swal from "sweetalert2";
 import useClassDelete from "../../Hooks/useClassDelete";
 
 const StudentDashboard = () => {
-
   const [cart, refetch] = useClassDelete();
 
-  const handleDelete=(selectClass)=>{
+  const handleDelete = (selectClass) => {
     Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
-        if (result.isConfirmed) {
-            fetch(`http://localhost:5000/class/${selectClass._id}`,{
-                method:'DELETE'
-            })
-            .then (res=>res.json())
-            .then (data=>{
-                if(data.deletedCount>0){
-                    refetch();
-                    Swal.fire(
-                        'Deleted!',
-                        'Your class has been deleted.',
-                        'success'
-                      )
-                }
-            })
-          
-        }
-      })
-  }
-
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/class/${selectClass._id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              refetch();
+              Swal.fire("Deleted!", "Your class has been deleted.", "success");
+            }
+          });
+      }
+    });
+  };
 
   return (
     <div className="text-center w-2/3">
-      <h1 className="mb-10 text-3xl text-center font-bold uppercase btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 hover:scale-110">My Selected Classes</h1>
+      <h1 className="mb-10 text-3xl text-center font-bold uppercase btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 hover:scale-110">
+        My Selected Classes
+      </h1>
       <div className="overflow-x-auto w-full text-center">
         <table className="table w-full text-center">
           {/* head */}

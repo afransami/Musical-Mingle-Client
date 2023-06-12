@@ -49,7 +49,7 @@ const PopularClasses = () => {
                   Available Seats: {popularClass.availableSeats}
                 </p>
                 <div className="card-actions justify-end">
-                <button className="btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 hover:scale-110">
+                  <button className="btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 hover:scale-110">
                     View Details
                   </button>
                 </div>
