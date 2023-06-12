@@ -31,7 +31,7 @@ const AddActivities = () => {
     };
     console.log(uploadForm);
 
-    fetch("http://localhost:5000/class", {
+    fetch("https://music-shcool-server.vercel.app/class", {
       method: "post",
       headers: {
         "content-type": "application/json",

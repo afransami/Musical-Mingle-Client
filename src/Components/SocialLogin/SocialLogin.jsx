@@ -47,7 +47,7 @@ const SocialLogin = () => {
     //     photoURL: loggedInUser.photoURL,
     //   };
 
-    //   fetch(`http://localhost:5000/users/${user?.email}`, {
+    //   fetch(`https://music-shcool-server.vercel.app/users/${user?.email}`, {
     //     method: "PUT",
     //     headers: {
     //       "content-type": "application/json",

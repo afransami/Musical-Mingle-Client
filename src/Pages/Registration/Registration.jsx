@@ -44,7 +44,7 @@ const Registration = () => {
             email: data.email,
             photoURL: data.photoURL,
           };
-          fetch("http://localhost:5000/users", {
+          fetch("https://music-shcool-server.vercel.app/users", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

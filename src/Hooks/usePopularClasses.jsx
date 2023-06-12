@@ -6,7 +6,7 @@ const usePopularClasses = () => {
 
   // limited 6 classes
   useEffect(() => {
-    fetch("http://localhost:5000/class")
+    fetch("https://music-shcool-server.vercel.app/class")
       .then((res) => res.json())
       .then((data) => {
         setPopularClass(data.slice(0, 6));

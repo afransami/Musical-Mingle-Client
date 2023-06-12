@@ -5,7 +5,7 @@ const useSelectClass = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5000/class")
+    fetch("https://music-shcool-server.vercel.app/class")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
