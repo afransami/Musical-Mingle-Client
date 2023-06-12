@@ -7,7 +7,7 @@ export const useInstructor = (email) => {
 
   useEffect(() => {
     if (email) {
-      fetch(`http://localhost:5000/instructor?email=${email}`)
+      fetch(`https://music-shcool-server.vercel.app/instructor?email=${email}`)
       .then((res) => res.json())
       .then((data) => {
           if (data.role === "Instructor") {
