@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import Swal from "sweetalert2";
-import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
+
+
 
 const Classes = () => {
   const [axiosSecure] = useAxiosSecure();
