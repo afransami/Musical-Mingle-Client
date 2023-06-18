@@ -6,17 +6,30 @@ export const useAdminDashboard = (email) => {
 
   useEffect(() => {
     if (email) {
-      fetch(`https://music-shcool-server.vercel.app/admin?email=${email}`)
-        .then((res) => res.json())
+      fetch(`http://localhost:5000/admin?email=${email}`)
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error('Network response was not OK');
+          }
+          return res.json();
+        })
         .then((data) => {
-          if (data.role === "admin") {
+          if (data.role === 'admin') {
             console.log(data);
             setIsAdmin(true);
             setIsAdminLoading(false);
+          } else {
+            setIsAdmin(false);
+            setIsAdminLoading(false);
           }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+          setIsAdmin(false);
+          setIsAdminLoading(false);
         });
     }
   }, [email]);
-
+  
   return [isAdmin, isAdminLoading];
 };

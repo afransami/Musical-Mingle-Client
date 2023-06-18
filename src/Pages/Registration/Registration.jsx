@@ -5,7 +5,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import Swal from "sweetalert2";
+import { Player, Controls } from "@lottiefiles/react-lottie-player";
+import { toast } from "react-hot-toast";
 
 const Registration = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -32,46 +33,55 @@ const Registration = () => {
   const from = location.state?.from?.pathname || "/";
 
   const onSubmit = async (data) => {
-    createUser(data.email, data.password, data.photURL).then((result) => {
-      const loggedUser = result.user;
-      console.log(loggedUser);
-      setError("");
+    const formData = new FormData();
+    formData.append("image", data.image[0]);
 
-      updateUserProfile(data.name, data.photURL)
-        .then(() => {
-          const saveUser = {
-            name: data.name,
-            email: data.email,
-            photoURL: data.photoURL,
-          };
-          fetch("https://music-shcool-server.vercel.app/users", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(saveUser),
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              if (data.insertedId) {
-                reset();
-                Swal.fire({
-                  position: "center",
-                  icon: "success",
-                  title: "User created successfully",
-                  showConfirmButton: false,
-                  timer: 1500,
+    const url = `https://api.imgbb.com/1/upload?key=${
+      import.meta.env.VITE_imgbb_apiKey
+    }`;
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imgData) => {
+        const imageUrl = imgData.data.display_url;
+        console.log(imageUrl);
+
+        createUser(data.email, data.password)
+          .then((result) => {
+            const loggedUser = result.user;
+            console.log(loggedUser);
+            setError("");
+
+            updateUserProfile(data.name, imageUrl).then(() => {
+              const saveUser = {
+                name: data.name,
+                email: data.email,
+                photoURL: imageUrl,
+              };
+              fetch("http://localhost:5000/users", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(saveUser),
+              })
+                .then((res) => res.json())
+                .then((data) => {
+                  if (data.insertedId) {
+                    toast.success("Successfully Registered!");
+                    reset();
+                    navigate(from, { replace: true });
+                    // navigate("/");
+                  }
                 });
-                reset();
-                navigate(from, { replace: true });
-                navigate("/");
-              }
             });
-        })
-        .catch((error) => console.error(error.message));
-      setError(error.message);
-      navigate(from, { replace: true });
-    });
+          })
+          .catch((error) => console.error(error.message));
+        setError(error.message);
+        navigate(from, { replace: true });
+      });
   };
 
   return (
@@ -79,8 +89,20 @@ const Registration = () => {
       <Helmet>
         <title>Musical Mingle | Sign Up</title>
       </Helmet>
-      <div className="grid lg:grid-cols-2 w-2/3 items-center">
-        <div className="card flex-shrink-0 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 shadow-xl bg-opacity-30">
+      <div className="grid lg:grid-cols-2 w-auto items-center">
+        <Player
+          autoplay
+          loop
+          src="../../../src/assets/70640-floating-magic-link-login.json"
+          // style={{ height: '300px', width: '300px' }}
+          className="w-auto"
+        >
+          <Controls
+            visible={false}
+            buttons={["play", "repeat", "frame", "debug"]}
+          />
+        </Player>
+        <div className="card flex-shrink-0 bg-gradient-to-r from-neutral-600 via-cyan-600 to-neutral-600 shadow-xl bg-opacity-30">
           <h1 className="text-4xl p-5 font-bold">Sign Up!</h1>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="card-body">
@@ -96,7 +118,9 @@ const Registration = () => {
                   className="text-black w-full px-4 py-2 rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
                 />
                 {errors.name && (
-                  <span className="text-red-500">This field is required</span>
+                  <span className="text-yellow-500">
+                    This field is required
+                  </span>
                 )}
               </div>
 
@@ -109,10 +133,9 @@ const Registration = () => {
                   id="image"
                   {...register("image", { required: "Please select an image" })}
                   className="w-full"
-                  // onChange={handleImageChange}
                 />
                 {errors.image && (
-                  <p className="text-red-500">{errors.image.message}</p>
+                  <p className="text-yellow-500">{errors.image.message}</p>
                 )}
               </div>
               <div className="form-control">
@@ -127,7 +150,9 @@ const Registration = () => {
                   className="text-black w-full px-4 py-2 rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
                 />
                 {errors.email && (
-                  <span className="text-red-500">This field is required</span>
+                  <span className="text-yellow-500">
+                    This field is required
+                  </span>
                 )}
               </div>
 
@@ -148,17 +173,17 @@ const Registration = () => {
                   />
 
                   {errors.password?.type === "required" && (
-                    <p className="text-red-500" role="alert">
+                    <p className="text-yellow-500" role="alert">
                       password is required
                     </p>
                   )}
                   {errors.password?.type === "minLength" && (
-                    <p className="text-red-500" role="alert">
+                    <p className="text-yellow-500" role="alert">
                       password must be 6 characters
                     </p>
                   )}
                   {errors.password?.type === "pattern" && (
-                    <p className="text-red-500" role="alert">
+                    <p className="text-yellow-500" role="alert">
                       password must be at least 1 uppercase case and Password
                       must contain at least one special character
                     </p>
@@ -201,14 +226,16 @@ const Registration = () => {
                   </button>
                 </div>
                 {errors.confirmPassword && (
-                  <p className="text-red-500">Confirm Password is required</p>
+                  <p className="text-yellow-500">
+                    Confirm Password is required
+                  </p>
                 )}
               </div>
 
-              <p className="font-bold text-red-500 text-xl"></p>
+              <p className="font-bold text-yellow-500 text-xl"></p>
               <div className="form-control ">
                 <input
-                  className="btn btn-outline bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 shadow-xl bg-opacity-30 border-0"
+                  className="btn btn-outline btn-warning border-0 border-b-4 mt-4 bg-gradient-to-r from-neutral-600 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 text-xl hover:scale-110"
                   type="submit"
                   value="Sign Up"
                 />

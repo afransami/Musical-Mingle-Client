@@ -11,13 +11,31 @@ const AddActivities = () => {
     event.preventDefault();
     const form = event.target;
     const className = form.className.value;
-    const classImage = form.classImage.value;
+    // const classImage = form.classImage.value;
     const instructorName = form.instructorName.value;
     const instructorEmail = form.instructorEmail.value;
-    const instructorImage = form.instructorImage.value;
+    // const instructorImage = form.instructorImage.value;
     const availableSeats = form.availableSeats.value;
     const subCategory = form.subCategory.value;
+    const status = form.status.value;
     const price = form.price.value;
+
+    
+    const classImage = form.classImage.files[0];
+    const formData = new FormData ()
+    formData.append("image", classImage)
+
+    const url = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_imgbb_apiKey}`      
+    fetch(url, {
+    method:'POST',
+    body: formData
+    })
+    .then (res => res.json())
+    .then(imgData => {
+
+    const imageUrl = imgData.data.display_url       
+    console.log(imageUrl);
+    });
 
     const uploadForm = {
       className,
@@ -27,11 +45,13 @@ const AddActivities = () => {
       instructorImage,
       availableSeats,
       subCategory,
-      price,
+      status,
+      price,      
     };
     console.log(uploadForm);
 
-    fetch("https://music-shcool-server.vercel.app/class", {
+
+    fetch("http://localhost:5000/class", {
       method: "post",
       headers: {
         "content-type": "application/json",
@@ -57,10 +77,11 @@ const AddActivities = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Class name</span>
+              <span className="label-text text-white">Class name <span className="text-red-500">*</span></span>
             </label>
             <input
               type="text"
+              required
               name="className"
               placeholder="Class name"
               className="input input-bordered text-black"
@@ -68,21 +89,20 @@ const AddActivities = () => {
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Class Image</span>
+              <span className="label-text text-white">Class Image <span className="text-red-500">*</span></span>
             </label>
-            <input
-              type="url"
-              name="classImage"
-              placeholder="Class Image"
-              className="input input-bordered text-black"
-            />
+            <input type="file" className="file-input file-input-bordered file-input-md w-full max-w-xs text-black"
+            name="classImage"
+            required 
+            placeholder="Class Image"/>         
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Instructor name</span>
+              <span className="label-text text-white">Instructor name <span className="text-red-500">*</span></span>
             </label>
             <input
               type="text"
+              required
               defaultValue={user?.displayName}
               readOnly
               name="instructorName"
@@ -92,62 +112,68 @@ const AddActivities = () => {
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Instructor Email</span>
+              <span className="label-text text-white">Instructor Email <span className="text-red-500">*</span></span>
             </label>
             <input
               type="email"
               name="instructorEmail"
               defaultValue={user?.email}
               readOnly
+              required
               placeholder="Instructor Email"
               className="input input-bordered text-black"
             />
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Instructor Image</span>
-            </label>
-            <input
-              type="url"
-              name="instructorImage"
-              placeholder="Instructor Image"
-              className="input input-bordered text-black"
-            />
-          </div>
-
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Available seats</span>
+              <span className="label-text text-white">Available seats <span className="text-red-500">*</span></span>
             </label>
             <input
               type="number"
               name="availableSeats"
               placeholder="Available Seats"
+              required
               className="input input-bordered text-black"
             />
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Price</span>
+              <span className="label-text text-white">Price <span className="text-red-500">*</span></span>
             </label>
             <input
               type="number"
               name="price"
+              required
               placeholder="Price"
+              className="input input-bordered text-black"
+            />
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text text-white">status <span className="text-red-500">*</span></span>
+            </label>
+            <input
+              type="text"
+              name="status"
+              required
+              readOnly
+              defaultValue={"pending"}
+              placeholder="pending"
               className="input input-bordered text-black"
             />
           </div>
 
           <div className="form-control w-full max-w-xs">
+          <label className="label">
+              <span className="label-text text-white">Category <span className="text-red-500">*</span></span>
+            </label>
             <select
               className="input input-bordered text-black"
               type="text"
-              name="subCategory"
-              placeholder="Sub Category"
-            >
-              <option disabled selected>
-                Pick one
-              </option>
+              required
+              name="subCategory"             
+            >              
+              <option disabled> </option>      
               <option>Country</option>
               <option>Reggae</option>
               <option>Blues</option>

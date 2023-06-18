@@ -1,5 +1,6 @@
 import "./style.css";
 import React, { useEffect } from "react";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -8,6 +9,11 @@ import { Pagination } from "swiper";
 import { Link } from "react-router-dom";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import './style.css'
+
+
+
+
 
 const Banner = () => {
   SwiperCore.use([Autoplay]);
@@ -16,7 +22,7 @@ const Banner = () => {
   }, []);
 
   return (
-    <div>
+    <div className="-mt-4">
       <Swiper
         pagination={true}
         slidesPerView={1}
@@ -29,20 +35,20 @@ const Banner = () => {
       >
         <SwiperSlide>
           <div
-            className="hero lg:h-[92vh] h-[70vh]"
+            className="hero lg:h-[92vh] h-[70vh] w-auto"
             style={{
               backgroundImage: `url(https://i.ibb.co/j6PwW58/group-kids-spending-time-after-school-together-handsome-friends-resting-after-classes-before-start-d.jpg)`,
               backgroundPosition: "center",
               backgroundSize: "cover",
             }}
           >
-            <div data-aos="fade-right" className="container mx-auto ml-10">
+            <div data-aos="fade-right" className="container mx-auto pl-10">
               <div className=" absolute flex justify-start transform -translate-y-1/2 left-30 top-1/2 text-white">
                 <div data-aos="fade-right" className="max-w-md px-5 lg:px-0 ">
-                  <h1 className="mb-5 hero-heading lg:text-5xl text-2xl  font-bold">
+                  <h1 className="mb-5 hero-heading lg:text-5xl text-xl  font-bold">
                     Lifelong Learning:
                   </h1>
-                  <p className="text-gray-200 mb-3 text-xl">
+                  <p className="text-gray-200 mb-3 lg:text-xl md:text-lg">
                     Music is a lifelong journey of learning and growth.
                     Practicing music allows individuals to continually challenge
                     themselves, set new goals, and expand their musical
@@ -61,20 +67,20 @@ const Banner = () => {
         </SwiperSlide>
         <SwiperSlide>
           <div
-            className="hero lg:h-[92vh] h-[70vh]"
+            className="hero lg:h-[92vh] h-[70vh] w-auto"
             style={{
               backgroundImage: `url(https://i.ibb.co/LdVMLTZ/two-sound-engineers-working-together.jpg)`,
               backgroundPosition: "center",
               backgroundSize: "cover",
             }}
           >
-            <div className="container mx-auto ml-10">
+            <div className="container mx-auto pl-10">
               <div className=" absolute flex justify-start transform -translate-y-1/2 left-30 top-1/2 text-white">
                 <div data-aos="fade-right" className="max-w-md px-5 lg:px-0">
-                  <h1 className="mb-5 hero-heading lg:text-5xl text-2xl font-bold capitalize">
+                  <h1 className="mb-5 hero-heading lg:text-5xl text-xl font-bold capitalize">
                     Creativity and Artistry:
                   </h1>
-                  <p className="text-gray-200 mb-3 text-xl">
+                  <p className="text-gray-200 mb-3 lg:text-xl md:text-lg">
                     Regular practice nurtures musicians' creativity and
                     encourages them to explore new musical ideas and styles. It
                     allows for improvisation, experimentation, and the
@@ -92,20 +98,20 @@ const Banner = () => {
         </SwiperSlide>
         <SwiperSlide>
           <div
-            className="hero lg:h-[92vh] h-[70vh]"
+            className="hero lg:h-[92vh] h-[70vh] w-auto"
             style={{
               backgroundImage: `url(https://i.ibb.co/JkK6yJ0/teaching-how-read-piece-sheet-music-hispanic-kid-learning-play-piano-with-help-male-music-teacher-du.jpg)`,
               backgroundPosition: "center",
               backgroundSize: "cover",
             }}
           >
-            <div className="container mx-auto ml-10">
+            <div className="container mx-auto pl-10">
               <div className=" absolute flex justify-start transform -translate-y-1/2 left-30 top-1/2 text-white">
                 <div data-aos="fade-right" className="max-w-md px-5 lg:px-0">
-                  <h1 className="mb-5 hero-heading lg:text-5xl text-2xl font-bold">
+                  <h1 className="mb-5 hero-heading lg:text-5xl text-xl font-bold">
                     Expressive Communication:
                   </h1>
-                  <p className="text-gray-200 mb-3 text-xl">
+                  <p className="text-gray-200 mb-3 lg:text-xl md:text-lg">
                     Music is a powerful form of self-expression. By practicing
                     music, individuals learn to convey emotions and tell stories
                     through their playing or singing. It allows musicians to

@@ -19,7 +19,7 @@ const AddInstructor = () => {
     };
     console.log(uploadForm);
 
-    fetch("https://music-shcool-server.vercel.app/instructor", {
+    fetch("http://localhost:5000/instructor", {
       method: "post",
       headers: {
         "content-type": "application/json",

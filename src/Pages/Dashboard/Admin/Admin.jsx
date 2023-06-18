@@ -2,7 +2,8 @@ import React from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
-import { FaTrashAlt, FaUserShield } from "react-icons/fa";
+import { FaChalkboardTeacher, FaTrashAlt, FaUserShield } from "react-icons/fa";
+import { toast } from "react-hot-toast";
 import Swal from "sweetalert2";
 
 const Admin = () => {
@@ -13,7 +14,7 @@ const Admin = () => {
   });
 
   const handleMakeAdmin = (user) => {
-    fetch(`https://music-shcool-server.vercel.app/users/admin/${user._id}`, {
+    fetch(`http://localhost:5000/users/admin/${user._id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
@@ -21,46 +22,51 @@ const Admin = () => {
         console.log(data);
         if (data.modifiedCount) {
           refetch();
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: `${user.name} is an Admin Now!`,
-            showConfirmButton: false,
-            timer: 1500,
-          });
+          toast.success (`${user.name} is an instructor Now!`)
         }
       });
   };
 
-  const handleDelete=(user)=>{
-    Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
-        if (result.isConfirmed) {
-            fetch(`https://music-shcool-server.vercel.app/users/${user._id}`,{
-                method:'DELETE'
-            })
-            .then (res=>res.json())
-            .then (data=>{
-                if(data.deletedCount>0){
-                    refetch();
-                    Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
-                      )
-                }
-            })
-          
+
+  const handleMakeInstructor = (user) => {
+    fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+      method: "PATCH",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount) {
+          refetch();
+          toast.success (`${user.name} is an instructor Now!`)         
         }
-      })
-  }
+      });
+  };
+
+
+  const handleDelete = (user) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/users/${user._id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              refetch();
+              toast.success (`${user.name} has been deleted from his role!`)              
+            }
+          });
+      }
+    });
+  };
 
   return (
     <div className="w-full">
@@ -90,20 +96,32 @@ const Admin = () => {
                 <td>{user.email}</td>
                 <td>
                   {user.role === "admin" ? (
-                    "admin"
+                    "admin" 
                   ) : (
-                    <button
-                      onClick={() => handleMakeAdmin(user)}
-                      className="btn btn-outline btn-warning border-0 border-b-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 hover:scale-110 text-white btn-xs w-12 h-12 text-2xl"
-                    >
-                      <FaUserShield></FaUserShield>
-                    </button>
+                    <div className="flex gap-4 justify-center items-center">
+                      <button
+                        onClick={() => handleMakeAdmin(user)}
+                        className="tooltip btn btn-outline btn-warning border-0 border-b-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 hover:scale-110 text-white btn-xs w-12 h-12 text-2xl" data-tip="Make admin"
+                      >
+                        <FaUserShield></FaUserShield>
+                      </button>
+                      {user.role === "instructor" ? (
+                        "instructor" 
+                      ) : (
+                      <button
+                        onClick={() => handleMakeInstructor(user)}                                                
+                        className="tooltip btn btn-outline btn-warning border-0 border-b-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 hover:scale-110 text-white btn-xs w-12 h-12 text-2xl" data-tip="Make instructor"
+                      >
+                        <FaChalkboardTeacher></FaChalkboardTeacher>
+                      </button>
+                      )}
+                    </div>
                   )}
                 </td>
                 <td>
                   <button
                     onClick={() => handleDelete(user)}
-                    className="btn btn-outline btn-warning border-0 border-b-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 hover:scale-110 text-white btn-xs w-12 h-12 text-2xl"
+                    className="tooltip btn btn-outline btn-warning border-0 border-b-4 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30 hover:scale-110 text-white btn-xs w-12 h-12 text-2xl" data-tip="Delete user"
                   >
                     <FaTrashAlt></FaTrashAlt>
                   </button>

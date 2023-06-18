@@ -9,7 +9,7 @@ const useAllClasses = () => {
     queryKey: ["class", user?.email],
     queryFn: async () => {
       const res = await fetch(
-        `https://music-shcool-server.vercel.app/class?email=${user?.email}`
+        `http://localhost:5000/class?email=${user?.email}`
       );
       return res.json();
     },

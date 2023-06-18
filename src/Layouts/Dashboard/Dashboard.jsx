@@ -42,6 +42,15 @@ const Dashboard = () => {
         <ul className="menu p-4 h-full w-80 bg-gradient-to-r from-neutral-500 via-cyan-600 to-neutral-600 rounded shadow-xl bg-opacity-30">
           {/* <!-- Sidebar content here --> */}
 
+          {
+          user?.photoURL ?  <div className="flex flex-col items-center justify-center" >
+            <img className="border-4 w-40 h-40 my-10  btn-circle " src={user?.photoURL} />
+            <p>{user?.displayName}</p>
+            <p className="mb-5">{user?.email}</p>
+                     
+          </div>: ""
+          }
+
           {isAdmin && (
             <>
               <li>

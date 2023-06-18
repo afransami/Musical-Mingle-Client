@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import { saveUser } from "../../api/auth";
+import { toast } from "react-hot-toast";
 
 const SocialLogin = () => {
   const { googleSignIn } = useContext(AuthContext);
@@ -20,57 +21,12 @@ const SocialLogin = () => {
           console.log(result.user)
           
           saveUser(result.user)
+          toast.success('Successfully login!')
           navigate(from, { replace: true })
-          Swal.fire({
-            icon: "success",
-            title: "success.",
-            text: "You have successfully logged in!",
-          });
+        
         })
 
       };
-
-
-    // googleSignIn().then((result) => {
-    //   const loggedInUser = result.user;  
-    //   navigate(from, { replace: true });    
-    //   console.log(loggedInUser);      
-    //   Swal.fire({
-    //     icon: "success",
-    //     title: "success.",
-    //     text: "You have successfully logged in!",
-    //   });
-      
-    //   const saveUser = {
-    //     name: loggedInUser.displayName,
-    //     email: loggedInUser.email,        
-    //     photoURL: loggedInUser.photoURL,
-    //   };
-
-    //   fetch(`https://music-shcool-server.vercel.app/users/${user?.email}`, {
-    //     method: "PUT",
-    //     headers: {
-    //       "content-type": "application/json",
-    //     },
-    //     body: JSON.stringify(saveUser),
-    //   })
-    //     .then((res) => res.json())
-    //     .then(() => {
-    //       Swal.fire({
-    //         icon: "success",
-    //         title: "success.",
-    //         text: "You have successfully logged in!",
-    //       });
-    //       navigate(from, { replace: true });
-    //     });
-
-
-
-        // navigate(from, { replace: true });
-    // });
-
-
-  
 
   return (
     <div>
