@@ -6,11 +6,11 @@ import Footer from "../../Home/Shared/Footer/Footer";
 const Main = () => {
   return (
     <div className="container mx-auto">
-      <Navbar></Navbar>
-      <div className="min-h-[calc(100vh-0px)] pt-20 pb-60">
+      {/* <Navbar></Navbar> */}
+      <div className=" ">
         <Outlet />
       </div>
-      <Footer></Footer>
+      {/* <Footer></Footer> */}
     </div>
   );
 };

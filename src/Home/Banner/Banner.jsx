@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import './style.css'
+import Example from "./BannerMUI";
 
 
 
@@ -23,7 +24,7 @@ const Banner = () => {
 
   return (
     <div className="-mt-4">
-      <Swiper
+      {/* <Swiper
         pagination={true}
         slidesPerView={1}
         modules={[Pagination, Autoplay]}
@@ -127,7 +128,7 @@ const Banner = () => {
             </div>
           </div>
         </SwiperSlide>
-      </Swiper>
+      </Swiper> */}
     </div>
   );
 };

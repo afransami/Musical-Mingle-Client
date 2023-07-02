@@ -6,13 +6,13 @@ const PopularInstructor = () => {
 
   return (
     <div>
-      <div data-aos="fade-left">
+      <div data-aos="zoom-in">
         <p className="mt-20 text-5xl font-semibold text-center">
           <span className="text-yellow-400 underline text-center">Popular</span>{" "}
           Instructors
         </p>
       </div>
-      <div data-aos="fade-right">
+      <div data-aos="zoom-out">
         <p className="mt-10 text-2xl w-1/2 mx-auto text-justify font-semibold">
           Popular musical classes provide a structured and guided learning
           environment for students to develop their musical skills, express
@@ -22,7 +22,7 @@ const PopularInstructor = () => {
         </p>
       </div>
 
-      <div data-aos="fade-up">
+      <div data-aos="zoom-out">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 my-20">
           {popularClass.map((popularClass) => (
             <div

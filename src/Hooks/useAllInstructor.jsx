@@ -6,7 +6,7 @@ const useAllInstructor = () => {
 
   // all classes
   useEffect(() => {
-    fetch("http://localhost:5000/class")
+    fetch("https://music-shcool-server.vercel.app/class")
       .then((res) => res.json())
       .then((data) => {
         setAllInstructors(data);
